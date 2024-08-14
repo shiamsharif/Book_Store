@@ -1,0 +1,32 @@
+a {
+    text-decoration: none; /* Removes the underline */
+     color: inherit; /*Inherits the color from the parent element */
+}
+
+.common-container{
+    min-height: 60vh;
+}
+
+.card-size {
+    height: 150px;
+    width: 150px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.card-image {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+
+.carousel-img {
+    height: 400px;
+    width: 100%;
+}
+
+
+
+
+

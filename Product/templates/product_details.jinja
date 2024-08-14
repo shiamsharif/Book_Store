@@ -1,0 +1,29 @@
+{% extends "base.jinja" %}
+
+{% block content %}
+
+<!-- Nav Bar -->
+{% include "navbar.jinja" %}
+
+<section class="container common-container p-5 my-5 extra-margin-top" id="product_detail">
+    <!-- Product Details -->
+    <div class="row">
+        <div class="col-md-6 d-flex justify-content-center">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-fluid">
+        </div>
+        <div class="col-md-6">
+            <h2 class="fw-bold">{{ product.name }}</h2>
+            <p class="text-muted"><strong>Model:</strong> {{ product.model }}</p>
+            <p class="text-muted"><strong>Part Number:</strong> {{ product.part_number }}</p>
+            <p><strong>Description:</strong></p>
+            <p>{{ product.description }}</p>
+            <p class="text-muted"><strong>Category:</strong> {{ product.category.name }}</p>
+            <p class="text-muted"><strong>Brands:</strong> {{ product.brand.name }}</p>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+{% include "footer.jinja" %}
+
+{% endblock content %}

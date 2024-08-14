@@ -1,0 +1,22 @@
+{% block content %}
+<section class="container p-5 my-5"  id="brands">
+    <a href="{% url "brand_list" %}">
+        <h3 class="fs-2 fw-semibold mb-5 text-center">Our Brands</h3>
+    </a>
+    <div class="row g-4">
+        {% for brand in brands %}
+        <div class="col-lg-3 col-md-4 col-sm-6 d-flex justify-content-center">
+            <div class="border border-dark rounded p-4 d-flex flex-column h-100 text-center">
+                <div class="d-flex justify-content-center align-items-center p-4 card-size">
+                    <img src="{{ brand.photo.url }}" alt="Brand image" class="img-fluid card-image">
+                </div>
+                <div class="bg-white border-top text-center">
+                    <a href="{% url 'product_list' %}?brand={{ brand.id }}" class="mb-0 fw-semibold">
+                        {{ brand.name|truncatechars:15 }}</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock content %}

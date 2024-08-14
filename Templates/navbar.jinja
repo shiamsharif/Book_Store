@@ -1,0 +1,51 @@
+{% block content %}
+
+<!-- Nav Bar -->
+<nav class="navbar navbar-expand-lg bg-light py-3 fixed-top">
+    <div class="container">
+        <!-- Left side: Brand name and Toggler -->
+        <a class="navbar-brand fs-2" href="{% url 'home' %}">Mitu Auto</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerContent"
+            aria-expanded="false" aria-controls="navbarTogglerContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+        <!-- Collapsible content -->
+        <div class="navbar-collapse collapse" id="navbarTogglerContent">
+            <!-- Navigation links -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active fw-semibold" aria-current="page" href="{% url "brand_list" %}">
+                        Brands
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active fw-semibold" aria-current="page" href="{% url "category_list" %}">Categories</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active fw-semibold" aria-current="page"
+                        href="{% url 'product_list' %}">Products</a>
+                </li>
+            </ul>
+
+            <!-- Center: Search bar -->
+            <form class="d-flex mx-lg-auto my-2 my-lg-0" style="width: 50%;" role="search">
+                <div class="input-group">
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Right side: Phone number and Button -->
+            <div class="d-flex align-items-center mt-3 mt-lg-0">
+                <button class="btn btn-outline-success" type="button">+123 456 7890</button>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- Nav Bar -->
+
+{% endblock content %}

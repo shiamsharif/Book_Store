@@ -1,0 +1,75 @@
+{% extends "base.jinja" %}
+
+{% block content %}
+
+<!-- Nav Bar -->
+{% include "navbar.jinja" %}
+
+<section class="container common-container p-5 my-5 extra-margin-top" id="product_list">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-lg-3 col-md-4 mb-5">
+            <div class="border border-dark rounded p-4 h-100">
+                <!-- Brands Filter -->
+                <h4 class="fs-5 fw-semibold mb-4">Brands</h4>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <ul class="list-unstyled">
+                        {% for brand in brands %}
+                        <li class="mb-3">
+                            <label class="form-check-label">
+                                <input type="checkbox" value="{{ brand.id }}" name="brands" class="form-check-input me-2">
+                                {{ brand.name }}
+                            </label>
+                        </li>
+                        {% endfor %}
+                    </ul>
+
+                    <!-- Categories Filter -->
+                    <h4 class="fs-5 fw-semibold mb-4">Categories</h4>
+                    <ul class="list-unstyled">
+                        {% for category in categories %}
+                        <li class="mb-3">
+                            <label class="form-check-label">
+                                <input type="checkbox" value="{{ category.id }}" name="categories" class="form-check-input me-2">
+                                {{ category.name }}
+                            </label>
+                        </li>
+                        {% endfor %}
+                    </ul>
+
+                    <!-- Filter Button -->
+                    <button type="submit" class="btn btn-success mt-3">Filter</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Product List -->
+        <div class="col-lg-9 col-md-8">
+            <h3 class="fs-2 fw-semibold mb-5 text-center">All Products</h3>
+            <div class="row g-4">
+
+                {% for product in products %}
+                <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center">
+                    <div class="border border-dark rounded p-4 d-flex flex-column h-100 text-center">
+                        <div class="d-flex justify-content-center align-items-center p-4 card-size">
+                            <img src="{{ product.image.url }}" alt="Product image" class="img-fluid card-image">
+                        </div>
+                        <div class="bg-white border-top text-center">
+                            <a href="{% url 'product_details' pk=product.id %}" class="text-decoration-none">
+                                <p class="mb-0 fw-semibold">{{ product.name }}</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Footer -->
+{% include "footer.jinja" %}
+
+{% endblock content %}
