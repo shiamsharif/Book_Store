@@ -4,7 +4,7 @@
 <nav class="navbar navbar-expand-lg bg-light py-3 fixed-top">
     <div class="container">
         <!-- Left side: Brand name and Toggler -->
-        <a class="navbar-brand fs-2" href="{% url 'home' %}">Mitu Auto</a>
+        <a class="navbar-brand fs-4 fw-bold text-danger " href="{% url 'home' %}" style="margin-top: -4px;">Metu Auto</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerContent"
             aria-expanded="false" aria-controls="navbarTogglerContent">
             <span class="navbar-toggler-icon"></span>
@@ -14,7 +14,7 @@
         <!-- Collapsible content -->
         <div class="navbar-collapse collapse" id="navbarTogglerContent">
             <!-- Navigation links -->
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav " style="margin-left: auto; margin-right: 20px">
                 <li class="nav-item">
                     <a class="nav-link active fw-semibold" aria-current="page" href="{% url "brand_list" %}">
                         Brands
@@ -30,18 +30,20 @@
             </ul>
 
             <!-- Center: Search bar -->
-            <form class="d-flex mx-lg-auto my-2 my-lg-0" style="width: 50%;" role="search">
+            <form method="get" action="{% url 'search' %}" role="search" class="d-flex my-2 my-lg-0" style="width: 350px;" >
                 <div class="input-group">
-                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">
+                    <input class="form-control" type="text" name="query" placeholder="Search for products..." value="{{ query }}" aria-label="Search">
+                    <button class="btn btn-outline-secondary" type="submit">
                         <i class="bi bi-search"></i>
                     </button>
                 </div>
             </form>
 
             <!-- Right side: Phone number and Button -->
-            <div class="d-flex align-items-center mt-3 mt-lg-0">
-                <button class="btn btn-outline-success" type="button">+123 456 7890</button>
+            <div class="d-flex align-items-center mt-3 mt-lg-0 " style="margin-left: 12px;">
+                <a href="tel:+8801922591852">
+                    <button class="btn btn-outline-danger" type="button">01922-591852</button>
+                </a>
             </div>
         </div>
     </div>

@@ -1,0 +1,31 @@
+{% extends "base.jinja" %}
+
+{% block content %}
+
+<!-- Nav Bar -->
+{% include "navbar.jinja" %}
+
+<section class="container common-container p-5 my-5 extra-margin-top">
+    <div class="row g-4">
+        {% for product in products %}
+        <div class="col-lg-3 col-md-4 col-sm-12 d-flex justify-content-center">
+            <div class="border border-dark rounded p-4 d-flex flex-column h-100 text-center">
+                <div class="d-flex justify-content-center align-items-center p-4 card-size">
+                    <img src="{{ product.image.url }}" alt="Product image" class="img-fluid card-image">
+                </div>
+                <div class="bg-white border-top text-center">
+                    <a href="{% url 'product_details' pk=product.id %}" class="text-decoration-none">
+                        <p class="mb-0 fw-semibold">{{ product.name }}</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+
+<!-- Footer -->
+{% include "footer.jinja" %}
+
+{% endblock content %}

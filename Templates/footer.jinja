@@ -1,5 +1,3 @@
-{% block content %}
-
 <!-- Footer -->
 <footer class="bg-body-tertiary text-center">
   <!-- Grid container -->
@@ -7,43 +5,71 @@
     <!--Grid row-->
     <div class="row">
       <!--Grid column-->
-      <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-        <h5 class="text-uppercase">Mitu Auto</h5>
-
+      <div class="col-lg-3 col-md-12 mb-4 mb-md-0 text-start">
+        <h5 class="text-uppercase fs-3 text-danger">Metu Auto</h5>
         <p>
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
-          molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae
-          aliquam voluptatem veniam, est atque cumque eum delectus sint!
+          molestias.
         </p>
         <p class="mb-0 fw-semibold">Address</p>
-        <P>R.N. Road, Jashore</P>
+        <p>
+          <a href="https://www.google.com/maps/place/Mitu+auto/@23.1631354,89.2201785,20.42z/data=!4m14!1m7!3m6!1s0x39ff110072064af1:0x5d201397fc8f1f20!2sMitu+auto!8m2!3d23.1630019!4d89.220251!16s%2Fg%2F11ld6qmm4r?entry=ttu" target="_blank">
+            <i class="bi bi-geo-alt-fill text-danger"></i> 82 RN Rd, Jashore 7400
+          </a>
+        </p>
       </div>
 
-
-      <!--Grid column-->
-      <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-        <h5 class="text-uppercase ">Contact Us</h5>
+      <div class="col-lg-3 col-md-12 mb-4 mb-md-0 text-start">
+        <h5 class="text-uppercase">Contact Us</h5>
 
         <p class="mb-0 fw-semibold">Phone</p>
-        <p>+0123456647</p>
+        <a href="tel:+8801922591852">
+          <i class="bi bi-phone text-info"></i> 01922-591852
+        </a>
 
         <p class="mb-0 fw-semibold">Email</p>
-        <p>mituauto@gmail.com</p>
+        <a href="mailto:alimurjaman01@gmail.com">
+          <i class="bi bi-envelope-fill text-danger"></i> alimurjaman01@gmail.com
+        </a>
 
+        <!-- Facebook Link -->
+        <p class="mb-0 fw-semibold">Follow Us</p>
+        <a href="https://www.facebook.com/people/MS-Metu-Autos-Jessore/100076358582340/?_rdr" target="_blank">
+          <i class="bi bi-facebook text-primary"></i> Facebook
+        </a>
+      </div>
+
+
+      <!--Grid column-->
+      <div class="col-lg-3 col-md-12 mb-4 mb-md-0 text-start">
+        <h5 class="text-uppercase">Quick Links</h5>
+        <ul class="list-unstyled">
+          <p><li><a href="{% url 'brand_list' %}" class="text-body fw-semibold">Brand</a></li></p>
+          <p></p><li><a href="{% url 'category_list' %}" class="text-body fw-semibold">Category</a></li></p>
+          <p></p><li><a href="{% url 'product_list' %}" class="text-body fw-semibold">Product</a></li></p>
+        </ul>
       </div>
       <!--Grid column-->
+
+      <!--Grid column-->
+      <div class="col-lg-3 col-md-12 mb-4 mb-md-0 text-start">
+        <!-- Google Map Embed -->
+        <div class="map-container">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1493.0426818483896!2d89.2193679!3d23.1632292!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff110072064af1%3A0x5d201397fc8f1f20!2sMitu+Auto!5e0!3m2!1sen!2sbd!4v1690382749146!5m2!1sen!2sbd" width="80%" height="170" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+      </div>
+
+      
     </div>
     <!--Grid row-->
   </div>
   <!-- Grid container -->
 
   <!-- Copyright -->
-  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
-    © 2024 Copyright:
-    <a class="text-body" href="https://miicon.net/">Miicon</a>
+  <div class="text-center text-light p-3 bg-dark">
+    © {% now "Y" %} Copyright:
+    <a href="https://miicon.net/" class="text-light">Miicon</a>
   </div>
   <!-- Copyright -->
 </footer>
 <!-- Footer -->
-
-{% endblock content %}

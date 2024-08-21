@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import HomePageView, BrandListView, CategoryListView, ProductListView, ProductDetailsView
+from .views import HomePageView, BrandListView, CategoryListView, ProductListView, ProductDetailsView, Search
 from django.conf.urls.static import static
 from Main import settings
 
@@ -13,7 +13,8 @@ urlpatterns = [
     path("category-list/", CategoryListView.as_view(), name="category_list"),
     path("product-list/", ProductListView.as_view(), name="product_list"),
     path("product-list/<int:id>/", ProductListView.as_view(), name="product_detail"),
-    path("product/<int:pk>/", ProductDetailsView.as_view(), name='product_details')
+    path("product/<int:pk>/", ProductDetailsView.as_view(), name='product_details'),
+    path("search/", Search, name='search'),
 
 ]
 if settings.DEBUG:

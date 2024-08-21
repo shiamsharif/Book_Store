@@ -9,14 +9,17 @@
                 aria-label="Slide {{ forloop.counter }}"></button>
             {% endfor %}
         </div>
-        <div class="carousel-inner h-100">
-            {% for carousel in carousels %}
-            <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                <img src="{{ carousel.photo.url }}" class="d-block carousel-img rounded "
-                    alt="Slide {{ forloop.counter }}" style="object-fit: cover;">
-            </div>
-            {% endfor %}
+      <div class="carousel-inner h-100">
+    {% for carousel in carousels %}
+    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+        <div class="ratio ratio-21x9"> <!-- Set your desired aspect ratio here -->
+            <img src="{{ carousel.photo.url }}" class="d-block w-100 h-100 rounded"
+                alt="Slide {{ forloop.counter }}" style="object-fit: cover;">
         </div>
+    </div>
+    {% endfor %}
+</div>
+
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
             data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>

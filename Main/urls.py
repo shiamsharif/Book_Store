@@ -17,6 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+# Add this it change the header of the admin panel. 
+admin.site.site_header = 'Administration'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('Product.urls')),
