@@ -21,6 +21,11 @@ a {
   color: inherit; /*Inherits the color from the parent element */
 }
 
+/* -------------------Hover--------------------  */
+.hover-red:hover {
+  color: #dc3545 !important; /* Bootstrap 'text-danger' color */
+}
+
 .common-container {
   min-height: 60vh;
 }

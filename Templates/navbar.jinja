@@ -4,7 +4,9 @@
 <nav class="navbar navbar-expand-lg bg-light py-3 fixed-top shadow-sm">
     <div class="container">
         <!-- Left side: Brand name and Toggler -->
-        <a class="navbar-brand fs-4 fw-bold text-danger" href="{% url 'home' %}" style="margin-top: -4px;">Book Store</a>
+        <a class="navbar-brand fs-4 fw-bold text-danger" href="{% url 'home' %}" style="margin-top: -4px;">
+            <i class="bi bi-book text-danger" style="font-size: 1.5rem; margin-right: 8px;"></i>Book Store
+        </a>
         <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerContent"
             aria-expanded="false" aria-controls="navbarTogglerContent">
             <span class="navbar-toggler-icon"></span>
@@ -15,17 +17,16 @@
             <!-- Navigation links -->
             <ul class="navbar-nav ms-auto gap-3">
                 <li class="nav-item">
-                    <a class="nav-link active fw-semibold" aria-current="page" href="{% url 'brand_list' %}">Brands</a>
+                    <a class="nav-link active fw-semibold text-dark hover-red" aria-current="page" href="{% url 'brand_list' %}">Brands</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active fw-semibold" aria-current="page" href="{% url 'category_list' %}">Categories</a>
+                    <a class="nav-link active fw-semibold text-dark hover-red" aria-current="page" href="{% url 'category_list' %}">Categories</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active fw-semibold" aria-current="page" href="{% url 'product_list' %}">All-Books</a>
+                    <a class="nav-link active fw-semibold text-dark hover-red" aria-current="page" href="{% url 'product_list' %}">All-Books</a>
                 </li>
             </ul>
-
-            <!-- Center: Search bar -->
+                        <!-- Center: Search bar -->
             <!-- Search bar -->
             <form method="get" action="{% url 'search' %}" role="search" class="d-flex my-2 my-lg-0 mx-lg-3" style="max-width: 350px; width: 100%;">
                 <div class="input-group">
