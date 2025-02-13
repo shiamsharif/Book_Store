@@ -1,75 +1,68 @@
 <!-- Footer -->
-<footer class="bg-body-tertiary text-center">
-  <!-- Grid container -->
-  <div class="container p-4">
-    <!--Grid row-->
-    <div class="row">
-      <!--Grid column-->
-      <div class="col-lg-3 col-md-12 mb-4 mb-md-0 text-start">
-        <h5 class="text-uppercase fs-3 text-danger">Metu Auto</h5>
+<footer class="bg-dark text-light pt-5">
+  <div class="container">
+    <div class="row gy-4">
+      
+      <!-- Left Column: Brand & Address -->
+      <div class="col-lg-3 col-md-6">
+        <h5 class="text-uppercase fw-bold text-danger">Book Store</h5>
+        <p class="small">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis molestias.</p>
+        <p class="mb-1 fw-semibold">Address</p>
         <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
-          molestias.
-        </p>
-        <p class="mb-0 fw-semibold">Address</p>
-        <p>
-          <a href="https://www.google.com/maps/place/Mitu+auto/@23.1631354,89.2201785,20.42z/data=!4m14!1m7!3m6!1s0x39ff110072064af1:0x5d201397fc8f1f20!2sMitu+auto!8m2!3d23.1630019!4d89.220251!16s%2Fg%2F11ld6qmm4r?entry=ttu" target="_blank">
-            <i class="bi bi-geo-alt-fill text-danger"></i> 82 RN Rd, Jashore 7400
+          <a href="#" 
+             target="_blank" class="text-light text-decoration-none">
+            <i class="bi bi-geo-alt-fill text-danger me-1"></i> Dhaka-1200
           </a>
         </p>
       </div>
 
-      <div class="col-lg-3 col-md-12 mb-4 mb-md-0 text-start">
-        <h5 class="text-uppercase">Contact Us</h5>
+      <!-- Middle Column: Contact Details -->
+      <div class="col-lg-3 col-md-6">
+        <h5 class="text-uppercase fw-bold">Contact Us</h5>
 
-        <p class="mb-0 fw-semibold">Phone</p>
-        <a href="tel:+8801922591852">
-          <i class="bi bi-phone text-info"></i> 01922-591852
+        <p class="mb-1 fw-semibold">Phone</p>
+        <a href="tel:+8801725547494" class="text-light text-decoration-none d-block">
+          <i class="bi bi-phone text-info me-1"></i> 01725547494
         </a>
 
-        <p class="mb-0 fw-semibold">Email</p>
-        <a href="mailto:alimurjaman01@gmail.com">
-          <i class="bi bi-envelope-fill text-danger"></i> alimurjaman01@gmail.com
+        <p class="mb-1 fw-semibold">Email</p>
+        <a href="mailto:shiam.sharif.07@gmail.com" class="text-light text-decoration-none d-block">
+          <i class="bi bi-envelope-fill text-danger me-1"></i> shiam.sharif.07@gmail.com
         </a>
 
-        <!-- Facebook Link -->
-        <p class="mb-0 fw-semibold">Follow Us</p>
-        <a href="https://www.facebook.com/people/MS-Metu-Autos-Jessore/100076358582340/?_rdr" target="_blank">
-          <i class="bi bi-facebook text-primary"></i> Facebook
+        <p class="mb-1 fw-semibold">Follow Us</p>
+        <a href="#">
+          <i class="bi bi-facebook text-primary me-1"></i> Facebook
         </a>
       </div>
 
-
-      <!--Grid column-->
-      <div class="col-lg-3 col-md-12 mb-4 mb-md-0 text-start">
-        <h5 class="text-uppercase">Quick Links</h5>
+      <!-- Middle Column: Quick Links -->
+      <div class="col-lg-3 col-md-6">
+        <h5 class="text-uppercase fw-bold">Quick Links</h5>
         <ul class="list-unstyled">
-          <p><li><a href="{% url 'brand_list' %}" class="text-body fw-semibold">Brand</a></li></p>
-          <p></p><li><a href="{% url 'category_list' %}" class="text-body fw-semibold">Category</a></li></p>
-          <p></p><li><a href="{% url 'product_list' %}" class="text-body fw-semibold">Product</a></li></p>
+          <li class="mb-3"><a href="{% url 'brand_list' %}" class="text-light text-decoration-none d-block">Brand</a></li>
+          <li class="mb-3"><a href="{% url 'category_list' %}" class="text-light text-decoration-none d-block">Category</a></li>
+          <li class="mb-3"><a href="{% url 'product_list' %}" class="text-light text-decoration-none d-block">All-Books</a></li>
         </ul>
       </div>
-      <!--Grid column-->
 
-      <!--Grid column-->
-      <div class="col-lg-3 col-md-12 mb-4 mb-md-0 text-start">
-        <!-- Google Map Embed -->
-        <div class="map-container">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1493.0426818483896!2d89.2193679!3d23.1632292!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff110072064af1%3A0x5d201397fc8f1f20!2sMitu+Auto!5e0!3m2!1sen!2sbd!4v1690382749146!5m2!1sen!2sbd" width="80%" height="170" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+
+      <!-- Right Column: Google Map -->
+      <div class="col-lg-3 col-md-6">
+        <h5 class="text-uppercase fw-bold">Location</h5>
+        <div class="rounded overflow-hidden">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1493.0426818483896!2d89.2193679!3d23.1632292!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff110072064af1%3A0x5d201397fc8f1f20!2sMitu+Auto!5e0!3m2!1sen!2sbd!4v1690382749146!5m2!1sen!2sbd"
+                  width="100%" height="170" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
       </div>
 
-      
     </div>
-    <!--Grid row-->
   </div>
-  <!-- Grid container -->
 
   <!-- Copyright -->
-  <div class="text-center text-light p-3 bg-dark">
+  <div class="text-center p-3 bg-secondary mt-4">
     © {% now "Y" %} Copyright:
-    <a href="https://miicon.net/" class="text-light">Miicon</a>
+    <a href="https://www.linkedin.com/in/shiam-sharif-736339251/" target="_blank" class="text-light text-decoration-none">ShiamSharif</a>
   </div>
-  <!-- Copyright -->
 </footer>
 <!-- Footer -->
