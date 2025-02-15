@@ -66,9 +66,13 @@ class ProductListView(ListView):
         queryset = super().get_queryset()
         brands = self.request.GET.getlist('brands')
         categories = self.request.GET.getlist('categories')
+        writers = self.request.GET.getlist('writers')
 
         if brands:
             queryset = queryset.filter(brand__id__in=brands)
+
+        if writers:
+            queryset = queryset.filter(writers__id__in=writers)
 
         if categories:
             queryset = queryset.filter(category__id__in=categories)
@@ -86,6 +90,7 @@ class ProductListView(ListView):
         # print("CALLING THE GET FUNCTION")
         brand = request.GET.getlist('brand')
         category = request.GET.getlist('category')
+        writer = request.GET.getlist('writer')
 
         print(brand)
         print(category)
@@ -97,6 +102,9 @@ class ProductListView(ListView):
 
         if category:
             filters |= Q(category__id__in=category)
+
+        if writer:
+            filters |= Q(writers__id__in=writer)
 
         self.object_list = Product.objects.filter(filters).distinct()
 
