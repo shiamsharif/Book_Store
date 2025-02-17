@@ -1,5 +1,7 @@
 from django.db import models
 
+from django.utils.text import slugify
+
 # Create your models here.
 class Brand(models.Model):
     name = models.CharField(max_length=255)
@@ -24,8 +26,15 @@ class Category(models.Model):
     
 
 class Writer(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
     photo = models.ImageField(upload_to='writer_photos/', null=True, blank=True)
+    slug = models.SlugField(unique=True, blank=True)
+
+    # To add and save slug id
+    def save(self, *args, **kwargs):
+        if not self.slug:  # Auto-generate slug if empty
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name

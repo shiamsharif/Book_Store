@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView, ListView, DetailView
 from Carousel.models import Carousel
-from Product.models import Brand, Category, Product
+from Product.models import Brand, Category, Product, Writer
 from django.db.models import Q
+from django.shortcuts import get_object_or_404
 
 
 # Create your views here.
@@ -118,6 +119,20 @@ class ProductDetailsView(DetailView):
     model = Product
     template_name = 'product_details.jinja'
     context_object_name = 'product'
+
+
+class WriterDetailView(DetailView):
+    model = Writer
+    template_name = "writer_detail.jinja"
+    context_object_name = "writer"
+
+    def get_object(self):
+        return get_object_or_404(Writer, slug=self.kwargs["slug"])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["products"] = Product.objects.filter(writers=self.object)
+        return context
 
 
 # search:

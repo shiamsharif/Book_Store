@@ -1,0 +1,46 @@
+{% extends "base.jinja" %}
+
+{% block content %}
+
+<!-- Nav Bar -->
+{% include "navbar.jinja" %}
+
+<section class="container common-container p-5 my-5 extra-margin-top" id="product_detail">
+    <!-- Product Details -->
+    <div class="col-lg-9 col-md-8">
+            <h1 class="fs-2 fw-semibold mb-5 mt-2 ">Books by <span class="text-danger font-monospace">{{ writer.name }}</span></h1>
+            <div class="row g-4">
+
+                {% for product in products %}
+                    <div class="col-lg-3 col-md-4 col-sm-12 d-flex justify-content-center">
+                        <a href="{% url 'product_details' pk=product.id %}" 
+                        class="rounded p-2 d-flex flex-column h-100 text-center shadow-sm product-card text-decoration-none" 
+                        style="background-color: #f5f5f5;">
+                            
+                            <div class="d-flex justify-content-center align-items-center p-4 text-center card-size">
+                                <img src="{{ product.image.url }}" alt="Product image" class="img-fluid card-image rounded" 
+                                    style="">
+                            </div>
+                            
+                            <div class="border-top text-center pt-3">
+                                <p class="mb-1 text-sm text-dark">{{ product.name|truncatewords:2|title }}</p>
+                                <p class="mb-0 fw-semibold text-danger fs-5">৳{{ product.price }}</p>
+                            </div>
+                        </a>
+                    </div>
+                {% empty %}
+                    <p>No books found for this writer.</p>
+                {% endfor %}
+            </div>
+        </div>
+   
+    
+
+    
+
+</section>
+
+<!-- Footer -->
+{% include "footer.jinja" %}
+
+{% endblock content %}

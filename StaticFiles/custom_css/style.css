@@ -1,32 +1,27 @@
 a {
-    text-decoration: none; /* Removes the underline */
-     color: inherit; /*Inherits the color from the parent element */
+  text-decoration: none; /* Removes the underline */
+  color: inherit; /*Inherits the color from the parent element */
 }
 
-.common-container{
-    min-height: 60vh;
+.common-container {
+  min-height: 60vh;
+}
+
+/*--------------------------- carousel Section ----------------------------- */
+.carousel-img {
+  height: 400px;
+  width: 100%;
 }
 
 .card-size {
-    height: 150px;
-    width: 150px;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+  max-height: 150px;
+  max-width: 150px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .card-image {
-    max-height: 100%;
-    max-width: 100%;
-    object-fit: contain;
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
 }
-
-
-.carousel-img {
-    height: 400px;
-    width: 100%;
-}
-
-
-
-
-
