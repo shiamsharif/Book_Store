@@ -60,7 +60,7 @@ class ProductListView(ListView):
     template_name = 'product_list.jinja'
     context_object_name = 'products'
     ordering = ['-id']
-    paginate_by = 9
+    paginate_by = 18
 
 
     def get_queryset(self):

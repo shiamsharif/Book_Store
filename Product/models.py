@@ -55,7 +55,7 @@ class Product(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.name
+        return f"{self.name} - {self.image.url if self.image else 'No Image'}"
 
     def __repr__(self):
         return (f"<Product(id={self.id}, name={self.name}, brand={self.brand.name if self.brand else 'None'}, "
