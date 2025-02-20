@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import HomePageView, BrandListView, CategoryListView, ProductListView, ProductDetailsView, Search, WriterDetailView, ContactView
+from .views import HomePageView, BrandListView, CategoryListView, ProductListView, ProductDetailsView, Search, WriterDetailView, ContactView, PrivacyPolicyView, AboutView, TarmsandconditionsView
 from django.conf.urls.static import static
 from Main import settings
 
@@ -21,6 +21,10 @@ urlpatterns = [
     path("search/", Search, name='search'),
 
     path('contact/', ContactView.as_view(), name='contact'),
+    path('privacy-policy/', PrivacyPolicyView.as_view(), name='privacypolicy'),
+    path('about/', AboutView.as_view(), name='about'),
+    path('tarms-and-conditions/', TarmsandconditionsView.as_view(), name='tarmsandconditions'),
+    
 
 ]
 if settings.DEBUG:

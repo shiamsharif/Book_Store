@@ -164,10 +164,19 @@ def Search(request):
 
 
 class ContactView(FormView):
-    template_name = "contact.html"
+    template_name = "../Templates/contactus.html"
     form_class = ContactForm
     success_url = reverse_lazy('home')
 
     def form_valid(self, form):
         Send_mail(self, form)
         return super().form_valid(form)
+    
+class PrivacyPolicyView(TemplateView):
+    template_name = "../Templates/privacypolicy.html"
+
+class AboutView(TemplateView):
+    template_name = "../Templates/about.html"
+
+class TarmsandconditionsView(TemplateView):
+    template_name = "../Templates/terms&conditions.html"

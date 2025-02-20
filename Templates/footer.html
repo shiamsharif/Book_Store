@@ -1,3 +1,7 @@
+{% extends "base.html" %}
+
+{% block content %}
+
 <!-- Footer -->
 <footer class="bg-dark text-light pt-5">
   <div class="container">
@@ -50,10 +54,10 @@
       <div class="col-lg-3 col-md-6">
         <h5 class="text-uppercase fw-bold">Information</h5>
         <ul class="list-unstyled">
-          <li class="mb-3"><a href="#" class="text-light text-decoration-none d-block hover-red">Contact Us</a></li>
-          <li class="mb-3"><a href="#" class="text-light text-decoration-none d-block hover-red">Terms & Conditions</a></li>
-          <li class="mb-3"><a href="#" class="text-light text-decoration-none d-block hover-red">Privacy Policy</a></li>
-          <li class="mb-3"><a href="#" class="text-light text-decoration-none d-block hover-red">About Us</a></li>
+          <li class="mb-3"><a href="{% url 'contact' %}" class="text-light text-decoration-none d-block hover-red">Contact Us</a></li>
+          <li class="mb-3"><a href="{% url 'tarmsandconditions' %}" class="text-light text-decoration-none d-block hover-red">Terms & Conditions</a></li>
+          <li class="mb-3"><a href="{% url 'privacypolicy' %}" class="text-light text-decoration-none d-block hover-red">Privacy Policy</a></li>
+          <li class="mb-3"><a href="{% url 'about' %}" class="text-light text-decoration-none d-block hover-red">About Us</a></li>
         </ul>
       </div>
 
@@ -67,3 +71,5 @@
   </div>
 </footer>
 <!-- Footer -->
+
+{% endblock content %}
