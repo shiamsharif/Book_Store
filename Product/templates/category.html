@@ -1,7 +1,7 @@
 {% block content %}
 <section class="container p-5 my-5" id="categories">
     <a href="{% url 'category_list' %}">
-        <h3 class="fs-2 fw-semibold mb-5 text-center">Our Categories</h3>
+        <h3 class="fs-2 fw-semibold mb-5 text-center hover-red">Our Categories</h3>
     </a>
     <div class="row g-4">
         {% for category in categories %}

@@ -17,7 +17,11 @@ def Send_mail(self, form):
         {contact.message}
         """
         sender_email = os.getenv("EMAIL_HOST_USER")  # Get from .env
-        recipient_email = ["shiamsharif.dev@gmail.com","shiamsharif.07@gmail.com"]  # Your email
+        recipient_email = [
+                "shiamsharif.dev@gmail.com",
+                "shiamsharif.07@gmail.com", "raiantasnimby5@gmail.com",
+                "mds78068@gmail.com",
+                ]  # Your email
 
         # Send email
         send_mail(subject, message, sender_email, recipient_email)

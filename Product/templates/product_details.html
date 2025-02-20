@@ -29,8 +29,14 @@
                 <p class="mb-2"><strong>Description:</strong></p>
                 <p class="text-muted lh-base">{{ product.description|linebreaks|urlize }}</p>
                 
-                <p class="mb-1"><strong>Category:</strong> <span class="badge bg-danger">{{ product.category.name }}</span></p>
-                <p class="mb-3"><strong>Brands:</strong> <span class="badge bg-secondary">{{ product.brand.name }}</span></p>
+                <a href="{% url 'product_list' %}?category={{ product.category.id }}">
+                    <p class="mb-1"><strong>Category:</strong> <span class="badge bg-danger">{{ product.category.name }}</span></p>
+                </a>
+                
+                <a href="{% url 'product_list' %}?brand={{ product.brand.id }}">
+                    <p class="mb-3"><strong>Brands:</strong> <span class="badge bg-secondary">{{ product.brand.name }}</span></p>
+                </a>
+                
                 
                 <h3 class="fw-semibold text-danger">৳{{ product.price }}</h3>
             </div>
