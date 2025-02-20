@@ -1,14 +1,23 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, ListView, DetailView
+from django.views.generic import TemplateView, ListView, DetailView, FormView
 from Carousel.models import Carousel
-from Product.models import Brand, Category, Product, Writer
+from Product.models import Brand, Category, Product, Writer, Contact
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
+from django.urls import reverse_lazy
+from .forms import ContactForm
 
 
 # Create your views here.
-class HomePageView(TemplateView):
+class HomePageView(FormView):
     template_name = "home.html"
+    form_class = ContactForm
+    success_url = reverse_lazy('home')
+
+    def form_valid(self, form):
+        form.save()  # save to DB
+        return super().form_valid(form)
+    
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -153,4 +162,11 @@ def Search(request):
     return render(request, 'search.html', context)
 
 
+class ContactView(FormView):
+    template_name = "contact.html"
+    form_class = ContactForm
+    success_url = reverse_lazy('home')
 
+    def form_valid(self, form):
+        form.save()  # save to DB
+        return super().form_valid(form)

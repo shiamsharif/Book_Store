@@ -60,3 +60,13 @@ class Product(models.Model):
     def __repr__(self):
         return (f"<Product(id={self.id}, name={self.name}, brand={self.brand.name if self.brand else 'None'}, "
                 f"category={self.category.name if self.category else 'None'}, model={self.model}, part_number={self.part_number})>")
+
+class Contact(models.Model):
+    name = models.CharField(max_length=255, null=False, blank=False)
+    email = models.EmailField()
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        formatted_time = self.created_at.strftime('%Y-%m-%d %I:%M %p')  # Example: 2025-02-19 10:30 AM
+        return f"{self.name} - {formatted_time}"

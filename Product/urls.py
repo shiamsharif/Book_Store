@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import HomePageView, BrandListView, CategoryListView, ProductListView, ProductDetailsView, Search, WriterDetailView
+from .views import HomePageView, BrandListView, CategoryListView, ProductListView, ProductDetailsView, Search, WriterDetailView, ContactView
 from django.conf.urls.static import static
 from Main import settings
 
@@ -19,6 +19,8 @@ urlpatterns = [
     path("writer/<slug:slug>/", WriterDetailView.as_view(), name="writer_detail"),
 
     path("search/", Search, name='search'),
+
+    path('contact/', ContactView.as_view(), name='contact'),
 
 ]
 if settings.DEBUG:
