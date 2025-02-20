@@ -6,6 +6,7 @@ from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from .forms import ContactForm
+from .utils import Send_mail
 
 
 # Create your views here.
@@ -15,7 +16,7 @@ class HomePageView(FormView):
     success_url = reverse_lazy('home')
 
     def form_valid(self, form):
-        form.save()  # save to DB
+        Send_mail(self, form)  #utils
         return super().form_valid(form)
     
 
@@ -168,5 +169,5 @@ class ContactView(FormView):
     success_url = reverse_lazy('home')
 
     def form_valid(self, form):
-        form.save()  # save to DB
+        Send_mail(self, form)
         return super().form_valid(form)
