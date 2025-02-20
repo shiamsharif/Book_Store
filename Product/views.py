@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404
 
 # Create your views here.
 class HomePageView(TemplateView):
-    template_name = "home.jinja"
+    template_name = "home.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -21,12 +21,15 @@ class HomePageView(TemplateView):
 
         categories = Category.objects.all().order_by('-id')[:8]
         context['categories'] = categories
+
+        products = Product.objects.all().order_by('-id')[:18]
+        context['products'] = products
         return context
 
 class BrandListView(ListView):
     model = Brand
     ordering = "-id"  # Orders by 'id' in descending order
-    template_name = "brand_list.jinja"
+    template_name = "brand_list.html"
     context_object_name = "brands"
     paginate_by = 12
 
@@ -34,7 +37,7 @@ class BrandListView(ListView):
 class CategoryListView(ListView):
     model = Category
     ordering = "-id"  # Orders by 'id' in descending order
-    template_name = "category_list.jinja"
+    template_name = "category_list.html"
     context_object_name = "categories"
     paginate_by = 12
 
@@ -57,7 +60,7 @@ class CategoryListView(ListView):
 
 class ProductListView(ListView):
     model = Product
-    template_name = 'product_list.jinja'
+    template_name = 'product_list.html'
     context_object_name = 'products'
     ordering = ['-id']
     paginate_by = 18
@@ -117,13 +120,13 @@ class ProductListView(ListView):
 
 class ProductDetailsView(DetailView):
     model = Product
-    template_name = 'product_details.jinja'
+    template_name = 'product_details.html'
     context_object_name = 'product'
 
 
 class WriterDetailView(DetailView):
     model = Writer
-    template_name = "writer_detail.jinja"
+    template_name = "writer_detail.html"
     context_object_name = "writer"
 
     def get_object(self):
@@ -147,7 +150,7 @@ def Search(request):
         'products': products,
         'query': query,
     }
-    return render(request, 'search.jinja', context)
+    return render(request, 'search.html', context)
 
 
 

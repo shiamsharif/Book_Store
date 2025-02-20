@@ -1,9 +1,9 @@
-{% extends "base.jinja" %}
+{% extends "base.html" %}
 
 {% block content %}
 
 <!-- Nav Bar -->
-{% include "navbar.jinja" %}
+{% include "navbar.html" %}
 
 <section class="container common-container p-5 my-5 extra-margin-top" id="category_list">
     <!-- Category List -->
@@ -28,9 +28,9 @@
 </section>
 
 <!-- Pagination -->
-{% include "pagination.jinja" %}
+{% include "pagination.html" %}
 
 <!-- Footer -->
-{% include "footer.jinja" %}
+{% include "footer.html" %}
 
 {% endblock content %}
