@@ -5,8 +5,8 @@
       
       <!-- Left Column: Brand & Address -->
       <div class="col-lg-3 col-md-6">
-        <h5 class="text-uppercase fw-bold text-danger">Book Store</h5>
-        <p class="small">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis molestias.</p>
+        <h5 class="text-uppercase fw-bold text-danger"><i class="bi bi-book text-danger" style="font-size: 1.5rem; margin-right: 8px;"></i>Book Store</h5>
+        <p class="small">Your go-to place for English & Bangla books. Explore, download, and enjoy reading.</p>
         <p class="mb-1 fw-semibold">Address</p>
         <p>
           <a href="#" 
@@ -20,19 +20,19 @@
       <div class="col-lg-3 col-md-6">
         <h5 class="text-uppercase fw-bold">Contact Us</h5>
 
-        <p class="mb-1 fw-semibold">Phone</p>
-        <a href="tel:+8801725547494" class="text-light text-decoration-none d-block">
+        
+        <a href="tel:+8801725547494" class="text-light text-decoration-none hover-red mb-3 d-block">
           <i class="bi bi-phone text-info me-1"></i> 01725547494
         </a>
 
-        <p class="mb-1 fw-semibold">Email</p>
-        <a href="mailto:shiam.sharif.07@gmail.com" class="text-light text-decoration-none d-block">
+       
+        <a href="mailto:shiam.sharif.07@gmail.com" class="text-light text-decoration-none hover-red mb-3 d-block">
           <i class="bi bi-envelope-fill text-danger me-1"></i> shiam.sharif.07@gmail.com
         </a>
 
-        <p class="mb-1 fw-semibold">Follow Us</p>
-        <a href="#">
-          <i class="bi bi-facebook text-primary me-1"></i> Facebook
+        
+        <a href="#" class="mb-3 hover-red">
+          <i class="bi bi-facebook text-primary  me-1"></i> Facebook
         </a>
       </div>
 
@@ -42,18 +42,19 @@
         <ul class="list-unstyled">
           <li class="mb-3"><a href="{% url 'brand_list' %}" class="text-light text-decoration-none d-block hover-red">Brand</a></li>
           <li class="mb-3"><a href="{% url 'category_list' %}" class="text-light text-decoration-none d-block hover-red">Category</a></li>
-          <li class="mb-3"><a href="{% url 'product_list' %}" class="text-light text-decoration-none d-block hover-red">All-Books</a></li>
+          <li class="mb-3"><a href="{% url 'product_list' %}" class="text-light text-decoration-none d-block hover-red">All Books</a></li>
         </ul>
       </div>
 
-
-      <!-- Right Column: Google Map -->
+      <!-- Right Column: Legal & Info Pages -->
       <div class="col-lg-3 col-md-6">
-        <h5 class="text-uppercase fw-bold">Location</h5>
-        <div class="rounded overflow-hidden">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1493.0426818483896!2d89.2193679!3d23.1632292!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff110072064af1%3A0x5d201397fc8f1f20!2sMitu+Auto!5e0!3m2!1sen!2sbd!4v1690382749146!5m2!1sen!2sbd"
-                  width="100%" height="170" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-        </div>
+        <h5 class="text-uppercase fw-bold">Information</h5>
+        <ul class="list-unstyled">
+          <li class="mb-3"><a href="#" class="text-light text-decoration-none d-block hover-red">Contact Us</a></li>
+          <li class="mb-3"><a href="#" class="text-light text-decoration-none d-block hover-red">Terms & Conditions</a></li>
+          <li class="mb-3"><a href="#" class="text-light text-decoration-none d-block hover-red">Privacy Policy</a></li>
+          <li class="mb-3"><a href="#" class="text-light text-decoration-none d-block hover-red">About Us</a></li>
+        </ul>
       </div>
 
     </div>
