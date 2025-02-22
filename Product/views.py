@@ -32,7 +32,7 @@ class HomePageView(FormView):
         categories = Category.objects.all().order_by('-id')[:8]
         context['categories'] = categories
 
-        products = Product.objects.all().order_by('-id')[:18]
+        products = Product.objects.all().order_by('-id')[:20]
         context['products'] = products
         return context
 
