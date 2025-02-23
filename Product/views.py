@@ -80,8 +80,8 @@ class ProductListView(ListView):
         queryset = super().get_queryset()
         
         # Retrieve filter values from GET request
-        brands = self.request.GET.getlist('brand[]')  # Using name="brand[]"
-        categories = self.request.GET.getlist('category[]')  # Using name="category[]"
+        brands = self.request.GET.getlist('brand')  # Using name="brand[]"
+        categories = self.request.GET.getlist('category')  # Using name="category[]"
 
         # Create a Q object for filtering
         filters = Q()

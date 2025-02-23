@@ -18,7 +18,7 @@
                         {% for brand in brands %}
                         <li class="mb-3">
                             <label class="form-check-label">
-                                <input type="checkbox" value="{{ brand.id }}" name="brand[]" class="form-check-input me-2">
+                                <input type="checkbox" value="{{ brand.id }}" name="brand" class="form-check-input me-2">
                                 {{ brand.name }}
                             </label>
                         </li>
@@ -31,7 +31,7 @@
                         {% for category in categories %}
                         <li class="mb-3">
                             <label class="form-check-label">
-                                <input type="checkbox" value="{{ category.id }}" name="category[]" class="form-check-input me-2">
+                                <input type="checkbox" value="{{ category.id }}" name="category" class="form-check-input me-2">
                                 {{ category.name }}
                             </label>
                         </li>
