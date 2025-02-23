@@ -18,7 +18,7 @@ urlpatterns = [
 
     path("writer/<slug:slug>/", WriterDetailView.as_view(), name="writer_detail"),
 
-    path("search/", Search, name='search'),
+    path("search/", Search.as_view(), name='search'),
 
     path('contact/', ContactView.as_view(), name='contact'),
     path('privacy-policy/', PrivacyPolicyView.as_view(), name='privacypolicy'),

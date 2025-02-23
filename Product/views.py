@@ -149,18 +149,25 @@ class WriterDetailView(DetailView):
 
 
 # search:
-def Search(request):
-    query = request.GET['query'].lstrip()
-    if query:
-        products = Product.objects.filter(name__icontains=query)
-    else:
-        products = Product.objects.all()
-    
-    context = {
-        'products': products,
-        'query': query,
-    }
-    return render(request, 'search.html', context)
+class Search(ListView):
+    model = Product
+    template_name = 'search.html'
+    context_object_name = 'products'
+    paginate_by = 10
+
+    def get_queryset(self):
+        query = self.request.GET.get('query', '').strip()
+        if query:
+            return Product.objects.filter(
+                Q(name__icontains=query) | 
+                Q(writers__name__icontains=query)  # ManyToManyField lookup
+            ).distinct().prefetch_related('writers')  # Optimized query , distinct use to remove duplicate
+        return Product.objects.none()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['query'] = self.request.GET.get('query', '').strip()
+        return context
 
 
 class ContactView(FormView):
