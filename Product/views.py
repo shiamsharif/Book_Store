@@ -78,54 +78,30 @@ class ProductListView(ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        brands = self.request.GET.getlist('brands')
-        categories = self.request.GET.getlist('categories')
-        writers = self.request.GET.getlist('writers')
+        
+        # Retrieve filter values from GET request
+        brands = self.request.GET.getlist('brand[]')  # Using name="brand[]"
+        categories = self.request.GET.getlist('category[]')  # Using name="category[]"
 
+        # Create a Q object for filtering
+        filters = Q()
+
+        # Apply brand filters if selected
         if brands:
-            queryset = queryset.filter(brand__id__in=brands)
+            filters &= Q(brand__id__in=brands)
 
-        if writers:
-            queryset = queryset.filter(writers__id__in=writers)
-
+        # Apply category filters if selected
         if categories:
-            queryset = queryset.filter(category__id__in=categories)
-        return queryset
-    
+            filters &= Q(category__id__in=categories)
+
+        # Return the filtered queryset
+        return queryset.filter(filters).distinct()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['brands'] = Brand.objects.all().order_by('-id')
-        context['categories'] = Category.objects.all().order_by('-id')
+        context['brands'] = Brand.objects.all().order_by('-id')  # Pass all brands to template
+        context['categories'] = Category.objects.all().order_by('-id')  # Pass all categories to template
         return context
-    
-
-    def get(self, request, *args, **kwargs):
-        # print("CALLING THE GET FUNCTION")
-        brand = request.GET.getlist('brand')
-        category = request.GET.getlist('category')
-        writer = request.GET.getlist('writer')
-
-        print(brand)
-        print(category)
-
-        filters = Q()
-        
-        if brand:
-            filters |= Q(brand__id__in=brand)
-
-        if category:
-            filters |= Q(category__id__in=category)
-
-        if writer:
-            filters |= Q(writers__id__in=writer)
-
-        self.object_list = Product.objects.filter(filters).distinct()
-
-        context = self.get_context_data(object_list=self.object_list)
-        context['brands'] = Brand.objects.all().order_by('-id')
-        context['categories'] = Category.objects.all().order_by('-id')
-        return render(request, self.template_name, context)
 
 
 class ProductDetailsView(DetailView):

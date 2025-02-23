@@ -7,18 +7,18 @@
 
 <section class="container common-container p-5 my-5 extra-margin-top" id="product_list">
     <div class="row">
+     
         <!-- Sidebar -->
         <div class="col-lg-3 col-md-4 mb-5">
-            <div class="border rounded p-4 h-100 " style="max-height: 1100px;">
+            <div class="border rounded p-4 h-100" style="max-height: 1100px;">
                 <!-- Brands Filter -->
                 <h4 class="fs-5 fw-semibold mb-4">Language</h4>
                 <form action="" method="get">
-                    
                     <ul class="list-unstyled" style="max-height: 500px; overflow-y: auto;">
                         {% for brand in brands %}
                         <li class="mb-3">
                             <label class="form-check-label">
-                                <input type="checkbox" value="{{ brand.id }}" name="brand" class="form-check-input me-2">
+                                <input type="checkbox" value="{{ brand.id }}" name="brand[]" class="form-check-input me-2">
                                 {{ brand.name }}
                             </label>
                         </li>
@@ -31,7 +31,7 @@
                         {% for category in categories %}
                         <li class="mb-3">
                             <label class="form-check-label">
-                                <input type="checkbox" value="{{ category.id }}" name="category" class="form-check-input me-2">
+                                <input type="checkbox" value="{{ category.id }}" name="category[]" class="form-check-input me-2">
                                 {{ category.name }}
                             </label>
                         </li>
@@ -43,6 +43,8 @@
                 </form>
             </div>
         </div>
+
+        
 
         <!-- Product List -->
         <div class="col-lg-9 col-md-8">
