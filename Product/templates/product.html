@@ -1,24 +1,28 @@
 {% block content %}
-<section class="container p-5 my-5"  id="brands">
+<section class="container p-5 my-5" id="brands">
     <a href="{% url 'product_list' %}">
-        <h3 class="fs-2 fw-semibold mb-5 text-center hover-red">All-Books</h3>
+        <h3 class="fs-2 fw-semibold mb-5 text-center hover-red">All Books</h3>
     </a>
     <div class="row g-4">
         {% for product in products %}
-        <div class="col-lg-2 col-md-3 col-sm-6 d-flex justify-content-center">
-            <a href="{% url 'product_details' pk=product.id %}" 
-            class="rounded p-2 d-flex flex-column h-100 text-center card-bg shadow-sm product-card text-decoration-none">
+        <div class="col-lg-3 col-md-4 col-sm-6 d-flex justify-content-center">
+            <div class="card shadow-sm product-card h-100 text-center border-0">
+                <a href="{% url 'product_details' pk=product.id %}" class="text-decoration-none">
+                    <div class="card-body d-flex flex-column align-items-center p-4">
+                        <!-- Product Image -->
+                        <img src="{{ product.image.url }}" alt="Product image" class="img-fluid card-image rounded mb-3" style="max-height: 200px; object-fit: cover;">
+                        <p class="mb-1 text-sm text-dark fw-semibold">{{ product.name|truncatewords:2|title }}</p>
+                        <p class="mb-0 fw-semibold text-danger fs-5">৳{{ product.price }}</p>
+                    </div>
+                </a>
                 
-                <div class="d-flex justify-content-center align-items-center p-4 text-center card-size">
-                    <img src="{{ product.image.url }}" alt="Product image" class="img-fluid card-image rounded" 
-                        style="">
-                </div>
-                
-                <div class="border-top text-center pt-3">
-                    <p class="mb-1 text-sm text-dark">{{ product.name|truncatewords:2|title }}</p>
-                    <p class="mb-0 fw-semibold text-danger fs-5">৳{{ product.price }}</p>
-                </div>
-            </a>
+                <!-- Add to Cart Form -->
+                <form action="{% url 'cart:cart_add' product.id %}" method="post" class="card-footer bg-light text-center py-3">
+                    {{ cart_product_form }}
+                    {% csrf_token %}
+                    <input type="submit" value="Add to Cart" class="btn btn-danger btn-sm w-100">
+                </form>
+            </div>
         </div>
         {% endfor %}
     </div>

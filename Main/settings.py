@@ -43,6 +43,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
+CART_SESSION_ID = 'cart'
+
 
 # Application definition
 
@@ -60,6 +62,7 @@ INSTALLED_APPS = [
     # "bootstrap5",
 
     # Created Apps:
+    'cart.apps.CartConfig',
     'Product.apps.ProductConfig',
     'Carousel.apps.CarouselConfig',
 ]

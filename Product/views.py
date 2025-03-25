@@ -7,6 +7,7 @@ from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from .forms import ContactForm
 from .utils import Send_mail
+from cart.forms import CartAddProductForm
 
 
 # Create your views here.
@@ -108,6 +109,12 @@ class ProductDetailsView(DetailView):
     model = Product
     template_name = 'product_details.html'
     context_object_name = 'product'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        product = self.get_object()
+        context['cart_product_form'] = CartAddProductForm()
+        return context
 
 
 class WriterDetailView(DetailView):

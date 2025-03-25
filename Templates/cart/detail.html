@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Your Shopping Cart{% endblock %}
+
+{% block content %}
+
+<!-- Nav Bar -->
+{% include "navbar.html" %}
+
+<div class="container mt-4" style="min-height: 75vh; padding-top: 80px;">
+  <h1 class="mb-4 text-danger">Your Shopping Cart</h1>
+  <div class="table-responsive">
+    <table class="table table-bordered text-center">
+      <thead class="bg-danger text-white">
+        <tr>
+          <th>Image</th>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Remove</th>
+          <th>Unit Price</th>
+          <th>Total Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in cart %}
+          {% with product=item.product %}
+            <tr>
+              <td>
+                <a href="{{ product.get_absolute_url }}">
+                  <img src="{{ product.image.url }}" class="img-thumbnail" width="100">
+                </a>
+              </td>
+              <td class="align-middle">{{ item.name|title }}</td>
+              <td class="align-middle">
+                <form action="{% url "cart:cart_add" product.id %}" method="post">
+                  {{ item.update_quantity_form.quantity }}
+                  {{ item.update_quantity_form.override }}
+                  <input type="submit" class="btn btn-outline-danger btn-sm" value="Update" >
+                  {% csrf_token %}
+                </form>
+               </td>
+              <td class="align-middle">
+                <form action="{% url 'cart:cart_remove' product.id %}" method="post" class="d-inline">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-outline-danger btn-sm">Remove</button>
+                </form>
+              </td>
+              <td class="align-middle">৳{{ item.price }}</td>
+              <td class="align-middle">৳{{ item.total_price }}</td>
+            </tr>
+          {% endwith %}
+        {% endfor %}
+        <tr class="bg-light text-dark fw-bold">
+          <td colspan="4" class="text-end">Total:</td>
+          <td colspan="2" class="text-danger">৳{{ cart.get_total_price }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="d-flex justify-content-between mt-3">
+    <a href="{% url 'product_list' %}" class="btn btn-outline-danger">Continue Shopping</a>
+    <a href="#" class="btn btn-danger">Checkout</a>
+  </div>
+</div>
+
+<!-- Footer -->
+{% include "footer.html" %}
+
+{% endblock %}

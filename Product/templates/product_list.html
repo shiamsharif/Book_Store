@@ -52,21 +52,28 @@
             <div class="row g-4">
 
                 {% for product in products %}
-                <div class="col-lg-3 col-md-4 col-sm-12 d-flex justify-content-center">
+                <div class="col-lg-3 col-md-4 col-sm-12 d-flex justify-content-center mb-4">
                     <a href="{% url 'product_details' pk=product.id %}" 
-                    class="rounded p-2 d-flex flex-column h-100 text-center card-bg shadow-sm product-card text-decoration-none">
+                       class="rounded-3 p-3 d-flex flex-column h-100 text-center card-bg shadow-lg product-card text-decoration-none hover-shadow">
                         
-                        <div class="d-flex justify-content-center align-items-center p-4 text-center card-size">
-                            <img src="{{ product.image.url }}" alt="Product image" class="img-fluid card-image rounded" 
-                                style="">
+                        <div class="d-flex justify-content-center align-items-center p-4">
+                            <img src="{{ product.image.url }}" alt="Product image" class="img-fluid card-image rounded-3" />
                         </div>
                         
-                        <div class="border-top text-center pt-3">
+                        <div class="border-top text-center pt-3 flex-grow-1">
                             <p class="mb-1 text-sm text-dark">{{ product.name|truncatewords:2|title }}</p>
                             <p class="mb-0 fw-semibold text-danger fs-5">৳{{ product.price }}</p>
                         </div>
+                
+                        <!-- Add to Cart Button -->
+                        <form action="{% url 'cart:cart_add' product.id %}" method="post" class="card-footer bg-light text-center py-3 border-0 mt-auto">
+                            {{ cart_product_form }}
+                            {% csrf_token %}
+                            <input type="submit" value="Add to Cart" class="btn btn-danger btn-sm w-100">
+                        </form>
                     </a>
                 </div>
+            
                 {% endfor %}
             </div>
         </div>
