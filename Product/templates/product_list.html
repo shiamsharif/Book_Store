@@ -64,13 +64,9 @@
                             <p class="mb-1 text-sm text-dark">{{ product.name|truncatewords:2|title }}</p>
                             <p class="mb-0 fw-semibold text-danger fs-5">৳{{ product.price }}</p>
                         </div>
-                
-                        <!-- Add to Cart Button -->
-                        <form action="{% url 'cart:cart_add' product.id %}" method="post" class="card-footer bg-light text-center py-3 border-0 mt-auto">
-                            {{ cart_product_form }}
-                            {% csrf_token %}
-                            <input type="submit" value="Add to Cart" class="btn btn-danger btn-sm w-100">
-                        </form>
+                    
+                        <button class="btn btn-outline-danger mt-2 btn-sm w-100" type="button">View Details</button>
+
                     </a>
                 </div>
             

@@ -35,6 +35,10 @@ class HomePageView(FormView):
 
         products = Product.objects.all().order_by('-id')[:20]
         context['products'] = products
+        
+        # Adding the cart product form
+        context['cart_product_form'] = CartAddProductForm()
+
         return context
 
 class BrandListView(ListView):
