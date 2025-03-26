@@ -63,6 +63,7 @@ INSTALLED_APPS = [
 
     # Created Apps:
     'cart.apps.CartConfig',
+    'orders.apps.OrdersConfig',
     'Product.apps.ProductConfig',
     'Carousel.apps.CarouselConfig',
 ]

@@ -23,6 +23,7 @@ admin.site.site_header = 'Administration'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('cart/', include('cart.urls', namespace='cart')),
+    path('orders/', include('orders.urls', namespace='orders')),
     path('', include('Product.urls')),
 
     
