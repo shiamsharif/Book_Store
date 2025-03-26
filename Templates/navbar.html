@@ -28,8 +28,8 @@
                     <a class="nav-link active fw-semibold text-dark hover-red" aria-current="page" href="{% url 'product_list' %}">Books</a>
                 </li>
             </ul>
-                        <!-- Center: Search bar -->
-            <!-- Search bar -->
+
+            <!-- Center: Search bar -->
             <form method="get" action="{% url 'search' %}" role="search" class="d-flex my-2 my-lg-0 mx-lg-3" style="max-width: 350px; width: 100%;">
                 <div class="input-group">
                     <input class="form-control rounded-start-pill border-danger" type="text" name="query" placeholder="Search for books..." value="{{ query }}" aria-label="Search">
@@ -39,9 +39,19 @@
                 </div>
             </form>
 
-
-            <!-- Right side: Phone number and Button -->
+            <!-- Right side: Cart and Button -->
             <div class="d-flex align-items-center mt-3 mt-lg-0">
+                <div class="cart me-3">
+                    {% with total_items=cart|length %}
+                        {% if total_items > 0 %}
+                            <a href="{% url 'cart:cart_detail' %}" class="text-danger fw-bold">
+                                Cart: {{ total_items }} item{{ total_items|pluralize }}, ${{ cart.get_total_price }}
+                            </a>
+                        {% elif not order %}
+                            <span class="text-muted">Your cart is empty.</span>
+                        {% endif %}
+                    {% endwith %}
+                </div>
                 <a href="{% url 'cart:cart_detail' %}">
                     <button class="btn btn-danger rounded-pill px-3" type="button">Cart</button>
                 </a>
@@ -50,8 +60,5 @@
     </div>
 </nav>
 <!-- Nav Bar -->
-
-
-
 
 {% endblock content %}
