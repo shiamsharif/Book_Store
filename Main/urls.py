@@ -22,8 +22,10 @@ admin.site.site_header = 'Administration'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
     path('cart/', include('cart.urls', namespace='cart')),
     path('orders/', include('orders.urls', namespace='orders')),
+    path('blog/', include('blog.urls', namespace='blog')),
     path('', include('Product.urls')),
 
     

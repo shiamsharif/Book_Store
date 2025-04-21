@@ -1,0 +1,38 @@
+<h3 class="h4 fw-bold text-dark mt-5 mb-4">💬 Add a Comment</h3>
+
+<form method="post" class="bg-white p-4 p-md-5 rounded-3 shadow border border-light">
+    {% csrf_token %}
+
+    <!-- Name Field -->
+    <div class="mb-4">
+        <label for="id_name" class="form-label text-dark">Your Name</label>
+        <input type="text" name="name" id="id_name"
+               value="{{ comment_form.name.value|default_if_none:'' }}"
+               placeholder="Enter your name"
+               class="form-control" />
+    </div>
+
+    <!-- Email Field -->
+    <div class="mb-4">
+        <label for="id_email" class="form-label text-dark">Your Email</label>
+        <input type="email" name="email" id="id_email"
+               value="{{ comment_form.email.value|default_if_none:'' }}"
+               placeholder="Enter your email"
+               class="form-control" />
+    </div>
+
+    <!-- Comment Field -->
+    <div class="mb-4">
+        <label for="id_body" class="form-label text-dark">Your Comment</label>
+        <textarea name="body" id="id_body" rows="5"
+                  placeholder="Write your comment here..."
+                  class="form-control" style="resize: none;">{{ comment_form.body.value|default_if_none:'' }}</textarea>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="pt-2">
+        <button type="submit" class="btn btn-danger w-100 w-sm-auto">
+            💾 Submit Comment
+        </button>
+    </div>
+</form>

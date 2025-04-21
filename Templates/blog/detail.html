@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+
+{% block content %}
+
+
+<!-- Nav Bar -->
+{% include "navbar.html" %}
+
+
+<article class="container py-5 bg-white p-4 p-md-5 rounded-3 shadow border border-light mx-auto my-5" style="min-height: 71vh; padding:200px 0px">
+    <h1 class="display-5 pt-5 fw-bold text-dark mb-3">{{ post.title }}</h1>
+
+    <p class="text-muted small mb-4">
+        Published on <span class="fw-medium text-dark">{{ post.publish|date:"F j, Y" }}</span> by 
+        <span class="text-danger fw-semibold">{{ post.author }}</span>
+    </p>
+
+    <div class="mb-5 text-dark">
+        {{ post.body|safe|linebreaks }}
+    </div>
+
+    <!-- Back to Home Button -->
+    <div class="mb-5">
+        <a href="{% url 'post_list' %}" 
+        class="btn btn-outline-danger d-inline-flex align-items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="bi bi-arrow-left" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 0 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 7.5H14.5A.5.5 0 0 1 15 8z"/>
+            </svg>
+            <span>Back to Home</span>
+        </a>
+    </div>
+
+    <!-- Comments Section -->
+    <div class="mt-5">
+        <h2 class="h4 fw-bold text-dark border-bottom pb-2 mb-4">Comments</h2>
+
+        {% for comment in comments %}
+            <div class="d-flex gap-3 align-items-start bg-light border border-light rounded p-3 mb-3 shadow-sm">
+                <!-- Avatar or Icon -->
+                <div class="flex-shrink-0">
+                    <div class="rounded-circle bg-danger bg-opacity-25 text-danger d-flex align-items-center justify-content-center fw-bold text-uppercase" style="width: 40px; height: 40px;">
+                        {{ comment.name|slice:":1" }}
+                    </div>
+                </div>
+
+                <!-- Comment content -->
+                <div class="flex-grow-1">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <h5 class="mb-0 h6 fw-semibold">{{ comment.name }}</h5>
+                        <span class="text-muted small">{{ comment.created|date:"M d, Y - H:i" }}</span>
+                    </div>
+                    <p class="mb-0 text-dark" style="white-space: pre-line;">
+                        {{ comment.body }}
+                    </p>
+                </div>
+            </div>
+        {% empty %}
+            <p class="text-muted fst-italic">There are no comments yet. Be the first to leave one!</p>
+        {% endfor %}
+    </div>
+
+    <!-- Comment Form -->
+    <div class="mt-5">
+        {% include "comment_form.html" %}
+    </div>
+</article>
+
+<!-- Footer -->
+{% include "footer.html" %}
+
+{% endblock %}
