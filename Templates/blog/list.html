@@ -26,13 +26,19 @@
                             <span class="fw-semibold text-dark">{{ post.author }}</span>
                         </p>
                         <p class="card-text text-dark">
-                            {{ post.body|safe|truncatewords:30|linebreaks }}
+                            {{ post.short_description|linebreaks }}
                         </p>
                     </div>
                 </div>
             </div>
         {% empty %}
-            <p class="text-muted">No blog posts found.</p>
+            <div class="alert alert-danger text-center py-4" role="alert">
+                <h4 class="alert-heading">No Blog Posts Available</h4>
+                <p class="mb-2">It looks like there are no blog posts to display at the moment.</p>
+                <p class="mb-0">Please check back later or try exploring other sections of the website.</p>
+                <hr>
+                <a href="{% url 'home' %}" class="btn btn-outline-danger mt-2">Go to Homepage</a>
+            </div>
         {% endfor %}
     </div>
 </section>

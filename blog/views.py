@@ -33,7 +33,7 @@ class PostDetailView(DetailView, CreateView):
     
     def get_success_url(self):
         # Redirect to the same post detail page using the pk from the URL
-        return reverse('post_detail', kwargs={'pk': self.kwargs['pk']})
+        return reverse('blog:post_detail', kwargs={'pk': self.kwargs['pk']})
 
 
     

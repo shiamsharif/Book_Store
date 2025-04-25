@@ -21,6 +21,11 @@ class Post(models.Model):
         on_delete=models.CASCADE,
         related_name='blog_posts'
     )
+    short_description = models.CharField(
+        max_length=100, 
+        default="No description yet",
+        help_text="A short summary (30-40 characters)."
+    )
     body = RichTextUploadingField()
     publish = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True)
@@ -44,7 +49,7 @@ class Post(models.Model):
         return self.title
     
     def get_absolute_url(self):
-        return reverse('post_detail', kwargs={'pk': self.pk})
+        return reverse('blog:post_detail', kwargs={'pk': self.pk})
     
     
 class Comment(models.Model):
