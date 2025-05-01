@@ -5,52 +5,148 @@
 <!-- Nav Bar -->
 {% include "navbar.html" %}
 
-<section class="container common-container p-5 my-5 extra-margin-top" id="product_detail">
-    <!-- Product Details -->
-    <div class="card border-0 shadow-sm p-5">
-        <div class="row g-4 align-items-center">
-            <div class="col-md-6 text-center">
-                <img src="{{ product.image.url }}" alt="{{ product.name }}" 
-                    class="img-fluid rounded" 
-                    style="width: 100%; height: 700px; object-fit: cover;">
-            </div>
-            <div class="col-md-6">
-                <h2 class="fw-bold text-danger">{{ product.name|title }}</h2>
+<section class="container p-4 p-md-5 my-4 mt-md-5" id="product_detail" style="margin-top: 7rem !important;">
+    <!-- Breadcrumb navigation -->
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb m-0" style="font-size: 0.9rem;">
+            <li class="breadcrumb-item"><a href="{% url 'product_list' %}" class="text-decoration-none text-secondary">Books</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'product_list' %}?category={{ product.category.id }}" class="text-decoration-none text-secondary">{{ product.category.name }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page" style="color: #dc3545;">{{ product.name|truncatewords:3|title }}</li>
+        </ol>
+    </nav>
 
-                <!-- Access writers -->
-                <div class="mb-2">
-                    {% for writer in product.writers.all %}
-                        <a href="{% url 'writer_detail' writer.slug %}" class="text-decoration-none font-monospace text-uppercase fw-medium text-danger">
-                            {{ writer.name }}
-                        </a>{% if not forloop.last %}, {% endif %}
-                    {% endfor %}
+    <!-- Product Details Card -->
+    <div class="card border-0 rounded-4 overflow-hidden" style="box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
+        <div class="row g-0">
+            <!-- Image Column -->
+            <div class="col-lg-6 position-relative product-image-container" style="background-color: #f8f9fa;">
+                <!-- Image Badge -->
+                <span class="badge bg-danger position-absolute" style="top: 20px; left: 20px; z-index: 10; border-radius: 20px; padding: 8px 16px; font-size: 0.75rem; font-weight: 600;">Featured</span>
+                
+                <!-- Product Image with zoom effect on hover -->
+                <div class="p-4 p-md-5 text-center d-flex align-items-center justify-content-center" style="height: 100%;">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}" 
+                        class="img-fluid rounded-3" 
+                        style="max-height: 500px; object-fit: contain; transition: transform 0.5s ease;"
+                        onmouseover="this.style.transform='scale(1.05)'" 
+                        onmouseout="this.style.transform='scale(1)'">
                 </div>
+            </div>
+            
+            <!-- Content Column -->
+            <div class="col-lg-6">
+                <div class="card-body p-4 p-md-5" style="height: 100%;">
+                    <!-- Title with gradient effect -->
+                    <h1 class="fw-bold mb-3" style="font-size: 2.2rem; background: linear-gradient(to right, #dc3545, #fd7e14); -webkit-background-clip: text; background-clip: text; color: transparent;">{{ product.name|title }}</h1>
+                    
+                    <!-- Writers with modern styling -->
+                    <div class="mb-4">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <i class="bi bi-pen" style="color: #6c757d;"></i>
+                            <span class="fw-medium" style="color: #495057;">Author:</span>
+                        </div>
+                        {% for writer in product.writers.all %}
+                            <a href="{% url 'writer_detail' writer.slug %}" class="text-decoration-none badge" style="background-color: rgba(220, 53, 69, 0.1); color: #dc3545; font-size: 0.9rem; padding: 6px 12px; margin-right: 5px; border-radius: 50px; transition: all 0.3s ease;" onmouseover="this.style.backgroundColor='rgba(220, 53, 69, 0.2)'" onmouseout="this.style.backgroundColor='rgba(220, 53, 69, 0.1)'">
+                                {{ writer.name }}
+                            </a>{% if not forloop.last %}{% endif %}
+                        {% endfor %}
+                    </div>
+                    
+                    <!-- Description with improved typography -->
+                    <div class="mb-4">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <i class="bi bi-info-circle" style="color: #6c757d;"></i>
+                            <span class="fw-medium" style="color: #495057;">Description:</span>
+                        </div>
+                        <div class="bg-light p-3 rounded-3" style="border-left: 4px solid rgba(220, 53, 69, 0.5);">
+                            <p class="text-muted lh-base mb-0" style="font-size: 0.95rem;">{{ product.description|linebreaks|urlize }}</p>
+                        </div>
+                    </div>
+                    
+                   <!-- Category and Brand in card format -->
+                    <div class="row g-3 mb-4">
+                        <!-- Category Card -->
+                        <div class="col-md-6">
+                            <a href="{% url 'product_list' %}?category={{ product.category.id }}" class="text-decoration-none">
+                                <div class="d-flex align-items-center p-3 rounded-3 bg-light" style="border: 1px solid rgba(0,0,0,0.05); transition: all 0.3s ease;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='#f8f9fa'">
+                                    <i class="bi bi-grid me-2" style="font-size: 1.2rem; color: #dc3545;"></i>
+                                    <div>
+                                        <p class="text-muted mb-0" style="font-size: 0.8rem;">Category</p>
+                                        <p class="fw-medium mb-0" style="color: #212529;">{{ product.category.name }}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
 
-                <p class="mb-2"><strong>Description:</strong></p>
-                <p class="text-muted lh-base">{{ product.description|linebreaks|urlize }}</p>
-                
-                <a href="{% url 'product_list' %}?category={{ product.category.id }}">
-                    <p class="mb-1"><strong>Category:</strong> <span class="badge bg-danger">{{ product.category.name }}</span></p>
-                </a>
-                
-                <a href="{% url 'product_list' %}?brand={{ product.brand.id }}">
-                    <p class="mb-3"><strong>Brands:</strong> <span class="badge bg-secondary">{{ product.brand.name }}</span></p>
-                </a>
-                
-                
-                <h3 class="fw-semibold text-danger">৳{{ product.price }}/Month</h3>
-               
-                <!-- Add to Cart Form -->
-                <form action="{% url 'cart:cart_add' product.id %}" method="post" class="card-footer bg-light text-center py-3">
-                    {{ cart_product_form }}
-                    {% csrf_token %}
-                    <input type="submit" value="Rent Now" class="btn btn-danger btn-sm w-100">
-                </form>
+                        <!-- Brand Card -->
+                        <div class="col-md-6">
+                            <a href="{% url 'product_list' %}?brand={{ product.brand.id }}" class="text-decoration-none">
+                                <div class="d-flex align-items-center p-3 rounded-3 bg-light" style="border: 1px solid rgba(0,0,0,0.05); transition: all 0.3s ease;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='#f8f9fa'">
+                                    <i class="bi bi-building me-2" style="font-size: 1.2rem; color: #6c757d;"></i>
+                                    <div>
+                                        <p class="text-muted mb-0" style="font-size: 0.8rem;">Publisher</p>
+                                        <p class="fw-medium mb-0" style="color: #212529;">{{ product.brand.name }}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Damage Weaver Card -->
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center p-3 rounded-3 bg-light" style="border: 1px solid rgba(0,0,0,0.05); transition: all 0.3s ease;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='#f8f9fa'">
+                                <i class="bi bi-cash-coin me-2" style="font-size: 1.2rem; color: #198754;"></i>
+                                <div>
+                                    <p class="text-muted mb-0" style="font-size: 0.8rem;">Damage Weaver</p>
+                                    <p class="fw-medium mb-0" style="color: #212529;">200 TK</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Location Card -->
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center p-3 rounded-3 bg-light" style="border: 1px solid rgba(0,0,0,0.05); transition: all 0.3s ease;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='#f8f9fa'">
+                                <i class="bi bi-geo-alt me-2" style="font-size: 1.2rem; color: #0d6efd;"></i>
+                                <div>
+                                    <p class="text-muted mb-0" style="font-size: 0.8rem;">Location</p>
+                                    <p class="fw-medium mb-0" style="color: #212529;">Dhaka</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                                        
+                    <!-- Price with visual emphasis -->
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <div>
+                            <p class="text-muted mb-1" style="font-size: 0.9rem;">Rental Price</p>
+                            <h2 class="fw-bold mb-0" style="color: #dc3545; font-size: 2rem;">৳{{ product.price }}<span style="font-size: 1rem; font-weight: 500; color: #6c757d;">/Month</span></h2>
+                        </div>
+                        <div class="px-3 py-2 rounded-3 bg-success bg-opacity-10 text-success d-flex align-items-center">
+                            <i class="bi bi-check-circle me-2"></i>
+                            <span style="font-size: 0.9rem; font-weight: 500;">In Stock</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Add to Cart Form with improved styling -->
+                    <form action="{% url 'cart:cart_add' product.id %}" method="post" class="mt-4">
+                        <div class="d-flex gap-3 align-items-center mb-3">
+                            <div style="flex: 1;">
+                                {{ cart_product_form }}
+                            </div>
+                            {% csrf_token %}
+                        </div>
+                        <button type="submit" class="btn w-100 py-3 d-flex align-items-center justify-content-center" style="background: linear-gradient(to right, #dc3545, #e74c3c); color: white; border: none; border-radius: 8px; font-weight: 600; transition: all 0.3s ease;" onmouseover="this.style.background='linear-gradient(to right, #c82333, #dc3545)'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 5px 15px rgba(220, 53, 69, 0.3)';" onmouseout="this.style.background='linear-gradient(to right, #dc3545, #e74c3c)'; this.style.transform='translateY(0)'; this.style.boxShadow='none';">
+                            <i class="bi bi-bag-check-fill me-2"></i>
+                            Rent Now
+                        </button>
+                    </form>
+            
+                </div>
             </div>
         </div>
     </div>
-
 </section>
+
 
 <!-- Footer -->
 {% include "footer.html" %}
