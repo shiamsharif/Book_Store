@@ -38,13 +38,13 @@
                 </a>
                 
                 
-                <h3 class="fw-semibold text-danger">৳{{ product.price }}</h3>
+                <h3 class="fw-semibold text-danger">৳{{ product.price }}/Month</h3>
                
                 <!-- Add to Cart Form -->
                 <form action="{% url 'cart:cart_add' product.id %}" method="post" class="card-footer bg-light text-center py-3">
                     {{ cart_product_form }}
                     {% csrf_token %}
-                    <input type="submit" value="Add to Cart" class="btn btn-danger btn-sm w-100">
+                    <input type="submit" value="Rent Now" class="btn btn-danger btn-sm w-100">
                 </form>
             </div>
         </div>

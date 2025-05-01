@@ -13,7 +13,7 @@
 
     <div class="row gy-4">
         {% for post in posts %}
-            <div class="col-12">
+            <div class="col-6">
                 <div class="card border border-light shadow-sm hover-shadow transition">
                     <div class="card-body">
                         <h2 class="h4 text-danger fw-bold mb-2">
@@ -25,7 +25,7 @@
                             Published {{ post.publish|date:"F j, Y" }} by 
                             <span class="fw-semibold text-dark">{{ post.author }}</span>
                         </p>
-                        <p class="card-text text-dark">
+                        <p class="card-text text-dark font-monospace">
                             {{ post.short_description|linebreaks }}
                         </p>
                     </div>
