@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+
 {% block title %}My Blog{% endblock %}
 
 
@@ -8,41 +9,85 @@
 <!-- Nav Bar -->
 {% include "navbar.html" %}
 
-<section class="container py-5" style="min-height: 71vh; padding:200px 0px">
-    <h1 class="h1 mb-4 pt-5 pb-3 border-bottom text-danger fw-bold">My Blog</h1>
+<section class="container py-5" style="min-height: 71vh;">
+    <!-- Hero Header Area -->
+    <div class="row py-4 mb-5 align-items-center">
+        <div class="col-lg-8">
+            <h1 class="display-5 fw-bold mb-0" style="color: #333;">My Blog</h1>
+            <div class="d-inline-block mt-2 mb-2" style="width: 50px; height: 4px; background-color: rgba(220, 53, 69, 0.7);"></div>
+            <p class="lead text-secondary mt-2">Thoughts, ideas, and stories worth sharing</p>
+        </div>
+        <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+            <div class="input-group">
+                <input type="text" class="form-control border-0 bg-light" style="box-shadow: none;" placeholder="Search posts...">
+                <button class="btn text-white" style="background-color: rgba(220, 53, 69, 0.7);" type="button">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
+        </div>
+    </div>
 
-    <div class="row gy-4">
+    <!-- Blog Posts Container -->
+    <div class="row g-4">
         {% for post in posts %}
-            <div class="col-6">
-                <div class="card border border-light shadow-sm hover-shadow transition">
-                    <div class="card-body">
-                        <h2 class="h4 text-danger fw-bold mb-2">
-                            <a href="{{ post.get_absolute_url }}" class="text-decoration-none text-danger-hover">
+            <div class="col-md-6">
+                <div class="card h-100 border-0 rounded-4 overflow-hidden" 
+                     style="transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.05);"
+                     onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 35px rgba(0,0,0,0.1)';" 
+                     onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.05)';">
+                    <div style="position: relative;">
+                        <div style="position: absolute; top: 16px; left: 16px; z-index: 10;">
+                            <span class="badge rounded-pill px-3 py-2" style="background-color: rgba(255, 255, 255, 0.85); color: #333; font-weight: 500; backdrop-filter: blur(5px);">
+                                {{ post.publish|date:"F j, Y" }}
+                            </span>
+                        </div>
+                        <div class="bg-light" style="height: 200px; background: linear-gradient(135deg, #f8f9fa, #e9ecef);">
+                            <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
+                                <i class="bi bi-journal-text" style="font-size: 3.5rem; color: rgba(0, 0, 0, 0.07);"></i> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body p-4" style="border-top: 1px solid rgba(0,0,0,0.05);">
+                        <h2 class="h4 fw-bold mb-3">
+                            <a href="{{ post.get_absolute_url }}" class="text-decoration-none" style="color: #333; transition: color 0.2s ease;">
                                 {{ post.title }}
                             </a>
                         </h2>
-                        <p class="text-muted small mb-3">
-                            Published {{ post.publish|date:"F j, Y" }} by 
-                            <span class="fw-semibold text-dark">{{ post.author }}</span>
-                        </p>
-                        <p class="card-text text-dark font-monospace">
+                        <div style="display: flex; align-items: center; margin-bottom: 16px;">
+                            <div style="width: 32px; height: 32px; background-color: #f8f9fa; border-radius: 50%; overflow: hidden; text-align: center; line-height: 32px; color: rgba(220, 53, 69, 0.7); font-weight: 600; border: 1px solid rgba(0,0,0,0.05);">
+                                {{ post.author|make_list|first|upper }}
+                            </div>
+                            <span style="margin-left: 8px; color: #6c757d; font-weight: 500;">{{ post.author }}</span>
+                        </div>
+                        <p class="card-text" style="color: #495057; line-height: 1.6;">
                             {{ post.short_description|linebreaks }}
                         </p>
+                        <div style="text-align: right; margin-top: 16px;">
+                            <a href="{{ post.get_absolute_url }}" class="btn btn-sm px-3 py-2" style="background-color: transparent; color: rgba(220, 53, 69, 0.7); border: 1px solid rgba(220, 53, 69, 0.3); border-radius: 50px; transition: all 0.2s ease;">
+                                Read More <i class="bi bi-arrow-right" style="margin-left: 4px;"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         {% empty %}
-            <div class="alert alert-danger text-center py-4" role="alert">
-                <h4 class="alert-heading">No Blog Posts Available</h4>
-                <p class="mb-2">It looks like there are no blog posts to display at the moment.</p>
-                <p class="mb-0">Please check back later or try exploring other sections of the website.</p>
-                <hr>
-                <a href="{% url 'home' %}" class="btn btn-outline-danger mt-2">Go to Homepage</a>
+            <div class="col-12">
+                <div class="card border-0 bg-light rounded-4 p-4 text-center" style="box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+                    <div style="padding: 60px 0;">
+                        <div style="font-size: 4rem; color: rgba(0, 0, 0, 0.1); margin-bottom: 16px;">
+                            <i class="bi bi-journal-x"></i>
+                        </div>
+                        <h3 style="color: #333; font-weight: 600;">No Blog Posts Available</h3>
+                        <p style="color: #6c757d; margin-bottom: 24px;">It looks like there are no blog posts to display at the moment.</p>
+                        <a href="{% url 'home' %}" class="btn px-4 py-2" style="background-color: rgba(220, 53, 69, 0.7); color: white; border-radius: 50px;">
+                            <i class="bi bi-house-door" style="margin-right: 8px;"></i> Return to Homepage
+                        </a>
+                    </div>
+                </div>
             </div>
         {% endfor %}
     </div>
 </section>
-
 
 {% include "pagination.html" %}
 
