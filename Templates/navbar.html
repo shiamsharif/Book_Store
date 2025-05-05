@@ -19,16 +19,16 @@
             <!-- Navigation links -->
             <ul class="navbar-nav ms-auto gap-3">
                 <li class="nav-item">
-                    <a class="nav-link active fw-semibold text-dark hover-red" aria-current="page" href="{% url 'blog:post_list' %}">Blog</a>
+                    <a class="nav-link active fw-semibold text-dark" aria-current="page" href="{% url 'blog:post_list' %}" style="transition: color 0.2s ease-in-out;" onmouseover="this.style.color='#dc3545'" onmouseout="this.style.color=''">Blog</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active fw-semibold text-dark hover-red" aria-current="page" href="{% url 'brand_list' %}">Language</a>
+                    <a class="nav-link active fw-semibold text-dark" aria-current="page" href="{% url 'brand_list' %}" style="transition: color 0.2s ease-in-out;" onmouseover="this.style.color='#dc3545'" onmouseout="this.style.color=''">Language</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active fw-semibold text-dark hover-red" aria-current="page" href="{% url 'category_list' %}">Categories</a>
+                    <a class="nav-link active fw-semibold text-dark" aria-current="page" href="{% url 'category_list' %}" style="transition: color 0.2s ease-in-out;" onmouseover="this.style.color='#dc3545'" onmouseout="this.style.color=''">Categories</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active fw-semibold text-dark hover-red" aria-current="page" href="{% url 'product_list' %}">Books</a>
+                    <a class="nav-link active fw-semibold text-dark" aria-current="page" href="{% url 'product_list' %}" style="transition: color 0.2s ease-in-out;" onmouseover="this.style.color='#dc3545'" onmouseout="this.style.color=''">Books</a>
                 </li>
             </ul>
 
@@ -42,22 +42,74 @@
                 </div>
             </form>
 
-            <!-- Right side: Cart and Button -->
-            <div class="d-flex align-items-center mt-3 mt-lg-0">
-                <div class="cart me-3">
-                    {% with total_items=cart|length %}
-                        {% if total_items > 0 %}
-                            <a href="{% url 'cart:cart_detail' %}" class="text-danger fw-bold">
-                                Cart: {{ total_items }} item{{ total_items|pluralize }}, ${{ cart.get_total_price }}
-                            </a>
-                        {% elif not order %}
-                            <span class="text-muted">Your cart is empty.</span>
-                        {% endif %}
-                    {% endwith %}
+            <!-- Right side: Cart, Login/Logout -->
+            <div class="d-flex align-items-center mt-3 mt-lg-0 gap-3">
+                <!-- Cart Section -->
+                <div class="d-flex align-items-center">
+                    <a href="{% url 'cart:cart_detail' %}" class="position-relative" style="text-decoration: none;">
+                        <i class="bi bi-cart3 text-danger" style="font-size: 1.5rem;"></i>
+                        {% with total_items=cart|length %}
+                            {% if total_items > 0 %}
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.7rem;">
+                                    {{ total_items }}
+                                </span>
+                            {% endif %}
+                        {% endwith %}
+                    </a>
+                    <div class="ms-2 d-none d-lg-block">
+                        {% with total_items=cart|length %}
+                            {% if total_items > 0 %}
+                                <a href="{% url 'cart:cart_detail' %}" class="text-danger" style="text-decoration: none; font-size: 0.85rem;">
+                                    ${{ cart.get_total_price }}
+                                </a>
+                            {% elif not order %}
+                                <span class="text-muted" style="font-size: 0.85rem;">Empty</span>
+                            {% endif %}
+                        {% endwith %}
+                    </div>
                 </div>
-                <a href="{% url 'cart:cart_detail' %}">
-                    <button class="btn btn-danger rounded-pill px-3" type="button">Cart</button>
-                </a>
+
+                <!-- User Account Section -->
+                <div class="ms-2">
+                    {% if user.is_authenticated %}
+                        <div class="dropdown">
+                            <button class="btn btn-outline-danger dropdown-toggle rounded-pill d-flex align-items-center gap-2" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="padding: 0.4rem 1rem;">
+                                <i class="bi bi-person-circle"></i>
+                                <span class="d-none d-md-inline">{{ user.username }}</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2 rounded-4" style="min-width: 220px; padding: 0.75rem;">
+                                <li>
+                                    <span class="dropdown-item text-dark fw-semibold" style="font-size: 0.95rem; background-color: #f8f9fa; border-radius: 0.5rem; padding: 0.5rem 0.75rem;">
+                                        👋 Hi, {{ user.username }}!
+                                    </span>
+                                </li>
+                                <li><hr class="dropdown-divider my-2"></li>
+                                <li class="text-center">
+                                    <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                                        {% csrf_token %}
+                                        <button type="submit"
+                                            class="btn btn-outline-danger rounded-pill"
+                                            style="padding: 0.4rem 1rem; transition: all 0.2s ease-in-out; font-size: 0.9rem; font-weight: 500; box-shadow: 0 2px 6px rgba(220, 53, 69, 0.3);"
+                                            onmouseover="this.style.backgroundColor='rgba(220, 53, 69, 0.1)'"
+                                            onmouseout="this.style.backgroundColor=''">
+                                            🔒 Logout
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                            
+                        </div>
+                    {% else %}
+                        <div class="d-flex gap-2">
+                            <a href="{% url 'login' %}" class="btn btn-outline-danger rounded-pill" style="padding: 0.4rem 1rem; transition: all 0.2s ease-in-out;" onmouseover="this.style.backgroundColor='rgba(220, 53, 69, 0.1)'" onmouseout="this.style.backgroundColor=''">
+                                Login
+                            </a>
+                            <a href="#" class="btn btn-danger rounded-pill" style="padding: 0.4rem 1rem; transition: opacity 0.2s ease-in-out;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+                                Sign Up
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>

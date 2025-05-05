@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+
+<!-- Nav Bar -->
+{% include "navbar.html" %}
+
+
+<div class="container py-5" style="max-width: 460px;">
+    <div class="text-center my-4 pt-5">
+        <i class="bi bi-book text-danger" style="font-size: 2.5rem;"></i>
+        <h1 class="fw-bold mt-2" style="font-size: 1.8rem;">Welcome Back</h1>
+        <p class="text-muted" style="font-size: 0.95rem;">Sign in to your Book Store account</p>
+    </div>
+    
+    <div class="card border-0 shadow-sm" style="border-radius: 15px; overflow: hidden;">
+        <div class="card-body p-4 p-md-5">
+            <form method="post" class="needs-validation" novalidate>
+                {% csrf_token %}
+                
+                <!-- Form errors -->
+                {% if form.non_field_errors %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert" style="border-radius: 10px; font-size: 0.9rem;">
+                    {% for error in form.non_field_errors %}
+                        {{ error }}
+                    {% endfor %}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endif %}
+                
+                <!-- Username field -->
+                <div class="mb-4">
+                    <label for="{{ form.username.id_for_label }}" class="form-label fw-semibold" style="font-size: 0.9rem;">
+                        Username
+                    </label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light border-end-0" style="border-top-left-radius: 10px; border-bottom-left-radius: 10px;">
+                            <i class="bi bi-person text-muted"></i>
+                        </span>
+                        <input type="text" name="{{ form.username.html_name }}" id="{{ form.username.id_for_label }}" 
+                               class="form-control bg-light border-start-0 {% if form.username.errors %}is-invalid{% endif %}" 
+                               placeholder="Enter your username" required
+                               style="border-top-right-radius: 10px; border-bottom-right-radius: 10px;">
+                    </div>
+                    {% if form.username.errors %}
+                    <div class="invalid-feedback" style="display: block; font-size: 0.85rem;">
+                        {% for error in form.username.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+                
+                <!-- Password field -->
+                <div class="mb-4">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <label for="{{ form.password.id_for_label }}" class="form-label fw-semibold" style="font-size: 0.9rem;">
+                            Password
+                        </label>
+                        <a href="{% url 'password_reset' %}" class="text-danger" style="font-size: 0.85rem; text-decoration: none;">
+                            Forgot password?
+                        </a>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light border-end-0" style="border-top-left-radius: 10px; border-bottom-left-radius: 10px;">
+                            <i class="bi bi-lock text-muted"></i>
+                        </span>
+                        <input type="password" name="{{ form.password.html_name }}" id="{{ form.password.id_for_label }}" 
+                               class="form-control bg-light border-start-0 {% if form.password.errors %}is-invalid{% endif %}" 
+                               placeholder="Enter your password" required
+                               style="border-top-right-radius: 10px; border-bottom-right-radius: 10px;">
+                    </div>
+                    {% if form.password.errors %}
+                    <div class="invalid-feedback" style="display: block; font-size: 0.85rem;">
+                        {% for error in form.password.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+                
+                <!-- Remember me checkbox -->
+                <div class="mb-4 form-check">
+                    <input type="checkbox" class="form-check-input" id="rememberMe" name="remember_me" 
+                           style="cursor: pointer;">
+                    <label class="form-check-label" for="rememberMe" style="font-size: 0.9rem; cursor: pointer;">
+                        Remember me
+                    </label>
+                </div>
+                
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-danger w-100 py-3 fw-bold text-white" 
+                        style="border-radius: 10px; transition: all 0.2s ease-in-out;" 
+                        onmouseover="this.style.opacity='0.9'" 
+                        onmouseout="this.style.opacity='1'">
+                    Sign In
+                </button>
+                
+                <!-- Register link -->
+                <div class="text-center mt-4">
+                    <span style="font-size: 0.9rem;">Don't have an account?</span>
+                    <a href="#" class="text-danger fw-semibold ms-1" style="text-decoration: none; font-size: 0.9rem;">
+                        Register now
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Social login options -->
+    <div class="text-center mt-4">
+        <p class="text-muted mb-3" style="font-size: 0.9rem;">Or sign in with</p>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="#" class="btn btn-outline-secondary" style="border-radius: 50%; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; transition: all 0.2s;">
+                <i class="bi bi-google"></i>
+            </a>
+            <a href="#" class="btn btn-outline-secondary" style="border-radius: 50%; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; transition: all 0.2s;">
+                <i class="bi bi-facebook"></i>
+            </a>
+            <a href="#" class="btn btn-outline-secondary" style="border-radius: 50%; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; transition: all 0.2s;">
+                <i class="bi bi-apple"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Footer -->
+    {% include "footer.html" %}
+
+{% endblock content %}
+
