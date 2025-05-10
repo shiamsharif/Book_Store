@@ -51,6 +51,12 @@ INSTALLED_APPS = [
     # "bootstrap5",
     'ckeditor',
     'ckeditor_uploader',
+    
+    'allauth',
+    'allauth.account',
+    
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 
     # Created Apps:
     'cart.apps.CartConfig',
@@ -62,6 +68,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "allauth.account.middleware.AccountMiddleware",
+    
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -70,6 +78,24 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# Provider specific settings
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        # For each OAuth based provider, either add a ``SocialApp``
+        # (``socialaccount`` app) containing the required client
+        # credentials, or list them here:
+        'APP': {
+            'client_id': '606705232281-98cestjqq9td5et1nmc8pgl9rj9v7lsf.apps.googleusercontent.com',
+            'secret': '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',
+            'key': ''
+        }
+    }
+}
+
+
+
+
 
 ROOT_URLCONF = 'Main.urls'
 
@@ -87,6 +113,16 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+AUTHENTICATION_BACKENDS = [
+   
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by email
+    'allauth.account.auth_backends.AuthenticationBackend',
+
 ]
 
 WSGI_APPLICATION = 'Main.wsgi.application'
@@ -171,3 +207,5 @@ CKEDITOR_CONFIGS = {
 
 LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "home"
+
+SOCIALACCOUNT_LOGIN_ON_GET = True

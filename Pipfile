@@ -8,6 +8,10 @@ pillow = "*"
 python-dotenv = "*"
 django = "*"
 django-ckeditor = "*"
+django-allauth = "*"
+requests = "*"
+pyjwt = "*"
+cryptography = "*"
 
 [dev-packages]
 
