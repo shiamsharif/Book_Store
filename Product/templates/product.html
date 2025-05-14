@@ -1,29 +1,33 @@
 {% block content %}
 <section class="container py-5" id="brands">
-    <!-- Improved header with animated underline effect -->
-    <div class="text-center mb-5">
-        <a href="{% url 'product_list' %}" class="text-decoration-none position-relative d-inline-block">
-            <h3 class="fs-1 fw-bold text-dark" style="letter-spacing: 0.5px; transition: all 0.3s ease;">
-                <span style="background: linear-gradient(to right, #dc3545, #fd7e14); -webkit-background-clip: text; background-clip: text; color: transparent;">All Books</span>
-            </h3>
-            <div style="height: 3px; width: 50%; background: linear-gradient(to right, #dc3545, #fd7e14); position: absolute; bottom: -5px; left: 25%; transform: scaleX(0); transition: transform 0.3s ease;" class="header-underline"></div>
-        </a>
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <div>
+            <a href="{% url 'product_list' %}" class="text-decoration-none position-relative d-inline-block">
+                <h3 class="fs-1 fw-bold text-dark" style="letter-spacing: 0.5px; transition: all 0.3s ease;">
+                    <span style="background: linear-gradient(to right, #dc3545, #fd7e14); -webkit-background-clip: text; background-clip: text; color: transparent;">All Books</span>
+                </h3>
+                <div style="height: 3px; width: 50%; background: linear-gradient(to right, #dc3545, #fd7e14); position: absolute; bottom: -5px; left: 25%; transform: scaleX(0); transition: transform 0.3s ease;" class="header-underline"></div>
+            </a>
+        </div>
+        <div>
+            <a href="#" class="btn btn-primary">Create Post</a>
+        </div>
     </div>
-    
 
     
     <div class="row g-4">
         {% for product in products %}
         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-            <div class="card h-100 border-0 product-card" style="border-radius: 12px; transition: all 0.3s ease; overflow: hidden;" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 10px 20px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none';">
+            <div class="card h-100 border-0 product-card" style="border-radius: 12px; transition: all 0.3s ease; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05);" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 12px 24px rgba(0,0,0,0.15)';" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 12px rgba(0,0,0,0.05)';">
                 <!-- All styles converted to inline CSS -->
                 
                 <a href="{% url 'product_details' pk=product.id %}" class="text-decoration-none">
                     <!-- Badge showing "Popular" -->
                     <span class="badge bg-danger px-3 py-2" style="border-radius: 20px; font-size: 0.7rem; font-weight: 600; position: absolute; top: 10px; right: 10px; z-index: 10;">Popular</span>
                     
-                    <div class="mx-auto mt-3" style="overflow: hidden; border-radius: 8px; text-align: center;">
-                        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-fluid" style="max-height: 200px; object-fit: cover; width: 100%; transition: transform 0.5s ease;" onmouseover="this.style.transform='scale(1.08)';" onmouseout="this.style.transform='scale(1)';">
+                    <!-- Fixed image container with set height and contain property -->
+                    <div class="image-container mx-auto mt-3" style="height: 200px; width: 85%; overflow: hidden; border-radius: 8px; text-align: center; background-color: #f7f7f7;">
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}" style="height: 100%; max-width: 100%; object-fit: contain; transition: transform 0.5s ease;" onmouseover="this.style.transform='scale(1.08)';" onmouseout="this.style.transform='scale(1)';">
                     </div>
                     
                     <div class="card-body px-3 pt-4">
