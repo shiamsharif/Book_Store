@@ -5,10 +5,10 @@ from Product.models import Brand, Category, Product, Writer, Contact
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
-from .forms import ContactForm
+from .forms import ContactForm, ProductForm
 from .utils import Send_mail
 from cart.forms import CartAddProductForm
-
+from django.views.generic.edit import CreateView
 
 # Create your views here.
 class HomePageView(FormView):
@@ -174,3 +174,12 @@ class AboutView(TemplateView):
 
 class TarmsandconditionsView(TemplateView):
     template_name = "../Templates/terms&conditions.html"
+    
+# CURD
+
+class ProductCreateView(CreateView):
+    model = Product
+    # form_class = ProductForm
+    fields = ['name', 'brand', 'category', 'price', 'image', 'description', 'writers']
+    template_name = 'create.html'
+    success_url = reverse_lazy('home')

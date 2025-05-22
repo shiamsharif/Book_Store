@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import HomePageView, BrandListView, CategoryListView, ProductListView, ProductDetailsView, Search, WriterDetailView, ContactView, PrivacyPolicyView, AboutView, TarmsandconditionsView
+from .views import HomePageView, BrandListView, CategoryListView, ProductListView, ProductDetailsView, Search, WriterDetailView, ContactView, PrivacyPolicyView, AboutView, TarmsandconditionsView, ProductCreateView
 from django.conf.urls.static import static
 from Main import settings
 
@@ -24,6 +24,9 @@ urlpatterns = [
     path('privacy-policy/', PrivacyPolicyView.as_view(), name='privacypolicy'),
     path('about/', AboutView.as_view(), name='about'),
     path('tarms-and-conditions/', TarmsandconditionsView.as_view(), name='tarmsandconditions'),
+    
+    #CURD
+    path('product/create/', ProductCreateView.as_view(), name='product_create'),
     
 
 ]

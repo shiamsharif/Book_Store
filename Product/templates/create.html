@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Nav Bar -->
+{% include "navbar.html" %}
+
+<section class="py-5 my-5" style="background-color: #f8f9fa;">
+    <div class="container" style="max-width: 700px; margin-top: 50px;">
+        <div class="card shadow" style="border-radius: 10px;">
+          <div class="card-header text-center bg-primary text-white" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+            <h4 class="mb-0">Post a Book for Rent</h4>
+          </div>
+          <div class="card-body">
+    
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+        
+                <div class="mb-3">
+                  <label for="name" class="form-label" style="font-weight: 500; color: #495057;">Book Title</label>
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Enter book title"
+                         style="padding: 12px; border-radius: 8px; border: 1px solid #dee2e6;">
+                </div>
+        
+                <div class="mb-3">
+                  <label for="brand" class="form-label" style="font-weight: 500; color: #495057;">Language</label>
+                  <select name="brand" class="form-control" id="brand"
+                          style="padding: 12px; border-radius: 8px; border: 1px solid #dee2e6;">
+                    {% for brand in form.fields.brand.queryset %}
+                      <option value="{{ brand.id }}">{{ brand.name }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+        
+                <div class="mb-3">
+                  <label for="category" class="form-label" style="font-weight: 500; color: #495057;">Publication</label>
+                  <select name="category" class="form-control" id="category"
+                          style="padding: 12px; border-radius: 8px; border: 1px solid #dee2e6;">
+                    {% for cat in form.fields.category.queryset %}
+                      <option value="{{ cat.id }}">{{ cat.name }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+        
+                <div class="mb-3">
+                  <label for="price" class="form-label" style="font-weight: 500; color: #495057;">Rental Price</label>
+                  <input type="number" step="0.01" name="price" class="form-control" id="price" placeholder="0.00"
+                         style="padding: 12px; border-radius: 8px; border: 1px solid #dee2e6;">
+                </div>
+        
+                <div class="mb-3">
+                  <label for="image" class="form-label" style="font-weight: 500; color: #495057;">Book Cover Image</label>
+                  <input type="file" name="image" class="form-control" id="image"
+                         style="padding: 12px; border-radius: 8px; border: 1px solid #dee2e6;">
+                </div>
+        
+                <div class="mb-3">
+                  <label for="description" class="form-label" style="font-weight: 500; color: #495057;">Book Description</label>
+                  <textarea name="description" class="form-control" id="description" rows="5"
+                            placeholder="Add a brief description of the book..."
+                            style="padding: 12px; border-radius: 8px; border: 1px solid #dee2e6;"></textarea>
+                </div>
+        
+                <div class="mb-3">
+                  <label for="writers" class="form-label" style="font-weight: 500; color: #495057;">Writer(s)</label>
+                  <input type="text" name="writers" class="form-control" id="writer_names"
+                         placeholder="e.g. Humayun Ahmed, J.K. Rowling"
+                         style="padding: 12px; border-radius: 8px; border: 1px solid #dee2e6;">
+                  <div class="form-text" style="color: #6c757d; font-size: 13px; margin-top: 8px;">
+                    Separate multiple names with commas.
+                  </div>
+                </div>
+        
+                <div class="text-center mt-4">
+                  <button type="submit" class="btn btn-success px-4 py-2 fw-semibold">Submit</button>
+                </div>
+        
+              </form>
+        
+    
+          </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+{% include "footer.html" %}
+
+{% endblock content %}

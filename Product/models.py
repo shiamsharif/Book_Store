@@ -47,7 +47,8 @@ class Product(models.Model):
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
-    writers = models.ManyToManyField(Writer)
+    # writers = models.ManyToManyField(Writer)
+    writers = models.CharField(max_length=250, null=True, blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     image = models.ImageField(upload_to='product_images/', null=True, blank=True)
     description = models.TextField(null=True, blank=True)
@@ -57,9 +58,10 @@ class Product(models.Model):
     def __str__(self):
         return f"{self.name} - {self.image.url if self.image else 'No Image'}"
 
-    def __repr__(self):
-        return (f"<Product(id={self.id}, name={self.name}, brand={self.brand.name if self.brand else 'None'}, "
-                f"category={self.category.name if self.category else 'None'}, model={self.model}, part_number={self.part_number})>")
+def __repr__(self):
+    return (f"<Product(id={self.id}, name={self.name}, brand={self.brand.name if self.brand else 'None'}, "
+            f"category={self.category.name if self.category else 'None'})>")
+
 
 class Contact(models.Model):
     name = models.CharField(max_length=255, null=False, blank=False)
