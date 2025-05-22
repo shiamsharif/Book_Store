@@ -51,7 +51,7 @@ class BrandListView(ListView):
 
 class CategoryListView(ListView):
     model = Category
-    ordering = "-id"  # Orders by 'id' in descending order
+    ordering = "-id"  # Orders by id in descending order
     template_name = "category_list.html"
     context_object_name = "categories"
     paginate_by = 12
@@ -141,15 +141,15 @@ class Search(ListView):
     template_name = 'search.html'
     context_object_name = 'products'
     paginate_by = 10
-
+    
     def get_queryset(self):
         query = self.request.GET.get('query', '').strip()
         if query:
             return Product.objects.filter(
-                Q(name__icontains=query) | 
-                Q(writers__name__icontains=query)  # ManyToManyField lookup
-            ).distinct().prefetch_related('writers')  # Optimized query , distinct use to remove duplicate
+                Q(name__icontains=query)
+            ).distinct()
         return Product.objects.none()
+
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
