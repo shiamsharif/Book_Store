@@ -70,7 +70,9 @@ To enable full functionality (including login, Google OAuth, and email notificat
 
 Once you successfully start the server and visit `http://127.0.0.1:7777`, you will be greeted with the following homepage:
 
-![Book Store Preview](e1ef7f44-af2f-4db5-abf8-14ca919e6db8.png)
+![Book Store Preview]
+![image](https://github.com/user-attachments/assets/8bd3a74d-6c6e-48f6-82aa-43c5d84a9ed6)
+
 
 ---
 
